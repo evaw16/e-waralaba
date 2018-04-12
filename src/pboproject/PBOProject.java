@@ -5,6 +5,11 @@
  */
 package pboproject;
 
+import controller.c_login;
+import java.sql.SQLException;
+import model.m_login;
+import view.Login;
+
 /**
  *
  * @author Brian R
@@ -14,9 +19,11 @@ public class PBOProject {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Login l = new Login();
-        l.setVisible(true);
+    public static void main(String[] args) throws SQLException {
+        m_login m = new m_login();
+        Login v = new Login();
+        c_login c = new c_login(m,v);
+        
     }
     
 }
