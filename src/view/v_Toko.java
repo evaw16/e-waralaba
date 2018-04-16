@@ -22,13 +22,13 @@ public class v_Toko extends javax.swing.JFrame {
     toko1 t1;
     toko2 t2;
 
-    public v_Toko() {
+    public v_Toko(toko1 t1, toko2 t2) {
         initComponents();
         this.setLocationRelativeTo(null);
         btnLogout.setBackground(new Color(0, 0, 0, 0));
 
-        t1 = new toko1();
-        t2 = new toko2();
+        this.t1 = t1;
+        this.t2 = t2;
 
         panelToko.setLayout(layout);
         panelToko.add(t1);
@@ -180,7 +180,7 @@ public class v_Toko extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -207,7 +207,7 @@ public class v_Toko extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new v_Toko().setVisible(true);
+                new v_Toko(t1,t2).setVisible(true);
             }
         });
     }

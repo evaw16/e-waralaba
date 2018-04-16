@@ -20,24 +20,24 @@ public class v_Gudang extends javax.swing.JFrame {
     
     GridBagLayout layout = new GridBagLayout();
     
-    gudang1 g1;
-    gudang2 g2;
-    c_gudang1 c;
+    gudang1 g1 = new gudang1();
+    gudang2 g2 = new gudang2();
     
-    public v_Gudang() {
+    public v_Gudang(gudang1 g1, gudang2 g2) {
         initComponents();
         btnLogout.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
-        
-        g1 = new gudang1();
-        g2 = new gudang2();
+        this.g1 = g1;
+        this.g2 = g2;
+//        g1 = new gudang1();
+//        g2 = new gudang2();
         
         panelGudang.setLayout(layout);
-        panelGudang.add(g1);
-        panelGudang.add(g2);
+        panelGudang.add(this.g1);
+        panelGudang.add(this.g2);
         
-        g1.setVisible(true);
-        g2.setVisible(false);
+        this.g1.setVisible(true);
+        this.g2.setVisible(false);
         
         btnLogout.addActionListener(new ActionListener() {
             @Override
@@ -198,7 +198,7 @@ public class v_Gudang extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -225,7 +225,7 @@ public class v_Gudang extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new v_Gudang().setVisible(true);
+                new v_Gudang(g1,g2).setVisible(true);
             }
         });
     }

@@ -5,12 +5,13 @@
  */
 package model;
 
-import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.PreparedStatement;
 import connector.config;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -31,14 +32,18 @@ public class m_gudang1 {
         }
     }
 
-    public void simpanData(String namaBarang, int jumlahStok, int hargaBarang) throws SQLException {
+    public void simpanData(String namaBarang, int jumlahStok, int hargaBarang) {
 //        String sql = "INSERT INTO barang values(" + kodeBarang + ",'" + namaBarang + "'," + jumlahStok + "," + hargaBarang + ")";
-        String sql = "INSERT INTO barang values(?,?,?)";
-        PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
-        preparedStatement.setString(1, namaBarang);
-        preparedStatement.setInt(2, jumlahStok);
-        preparedStatement.setInt(3, hargaBarang);
-        preparedStatement.executeUpdate();
+        try {
+            String sql = "INSERT INTO barang values(NULL,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(2, namaBarang);
+            preparedStatement.setInt(3, jumlahStok);
+            preparedStatement.setInt(4, hargaBarang);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+        }
 //        statement = connection.createStatement();
 //        statement.executeUpdate(sql);
 
@@ -46,7 +51,7 @@ public class m_gudang1 {
 
     public void updateData(String kodeBarang, String namaBarang, String jumlahStok, String hargaBarang) throws SQLException {
         String sql = "update barang set kode_barang= ?, nama_barang = ?jumlah_stok= ? harga= ? where kode_barang= ?";
-        PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, kodeBarang);
         preparedStatement.setString(2, namaBarang);
         preparedStatement.setString(3, jumlahStok);
@@ -54,12 +59,13 @@ public class m_gudang1 {
         preparedStatement.setString(5, kodeBarang);
         preparedStatement.executeUpdate();
     }
-    public void hapusData(String kodeBarang) throws SQLException{
+
+    public void hapusData(String kodeBarang) throws SQLException {
         String sql = "delete from barang where kode_barang= ?";
-        PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, kodeBarang);
         preparedStatement.executeUpdate();
-        
+
     }
 
 }

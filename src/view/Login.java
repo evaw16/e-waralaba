@@ -87,6 +87,8 @@ public class Login extends javax.swing.JFrame {
             }
         }
         );
+        username.setToolTipText("Masukkan username dengan benar");
+        password.setToolTipText("Masukkan password dengan benar");
         
 
     }

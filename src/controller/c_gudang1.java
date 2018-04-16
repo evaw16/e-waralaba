@@ -26,8 +26,8 @@ public class c_gudang1 {
         gudang.setVisible(true);
         gudang.getBtnSimpan().addActionListener(new ButtonSimpan());
         gudang.getBtnUbah().addActionListener(new ButtonUbah());
-        gudang.getBtnHapus().addActionListener(new ButtonHapus());
-        gudang.getBtnReset().addActionListener(new ButtonReset());
+        gudang.getBtnHapus().addActionListener(new ButtonHapus());//bisa
+        gudang.getBtnReset().addActionListener(new ButtonReset());//bisa
 
     }
 
@@ -86,7 +86,7 @@ public class c_gudang1 {
     private class ButtonSimpan implements ActionListener {
 
         public ButtonSimpan() {
-            System.out.println("qwertyuio");
+//            System.out.println("qwertyuio");
         }
 
         @Override
@@ -94,12 +94,12 @@ public class c_gudang1 {
             System.out.println("asdfghjkl;");
 //            int kodeBarang = Integer.parseInt(gudang.getKode_barang().getText().toString());
             String namaBarang = gudang.getNama_barang().getText();
-            int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText().toString());
-            int hargaBarang = Integer.parseInt(gudang.getHarga_barang().getText().toString());
+            int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText()); 
+            int hargaBarang = Integer.parseInt(gudang.getHarga_barang().getText());
+            System.out.println(namaBarang + " " + jumlahStok + " " + hargaBarang);
             try {
                 model.simpanData(namaBarang, jumlahStok, hargaBarang);
                 clear();
-                System.out.println(namaBarang + " " + jumlahStok + " " + hargaBarang);
             } catch (Exception le) {
 //                System.out.println(e.getMessage());
             }

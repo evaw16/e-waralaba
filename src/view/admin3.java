@@ -9,12 +9,12 @@ package view;
  *
  * @author Brian R
  */
-public class gudang2 extends javax.swing.JPanel {
+public class admin3 extends javax.swing.JPanel {
 
     /**
-     * Creates new form gudang2
+     * Creates new form admin3
      */
-    public gudang2() {
+    public admin3() {
         initComponents();
     }
 
@@ -41,27 +41,17 @@ public class gudang2 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Toko", "Tanggal", "Barang", "Jumlah Terjual"
+                "Tanggal", "Kode Barang", "Nama Barang", "Jumlah Terjual"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 650, -1));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 180, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 670, -1));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 170, -1));
 
         jLabel1.setText("Pencarian");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

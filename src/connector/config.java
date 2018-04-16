@@ -19,8 +19,12 @@ public class config {
     public static Connection Connection() {
 
         try {
+            String username = "root";
+            String password = "";
+            String database = "e-waralaba";
+            String url = "jdbc:mysql://localhost/" + database;
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/e-waralaba", "root", "");
+            connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
