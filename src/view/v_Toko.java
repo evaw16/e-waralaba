@@ -104,23 +104,23 @@ public class v_Toko extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Bebas Neue", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Data Stok");
+        jLabel1.setText("Data PENJUALAN");
 
         javax.swing.GroupLayout tokoStokLayout = new javax.swing.GroupLayout(tokoStok);
         tokoStok.setLayout(tokoStokLayout);
         tokoStokLayout.setHorizontalGroup(
             tokoStokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tokoStokLayout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(87, 87, 87))
+                .addGap(67, 67, 67))
         );
         tokoStokLayout.setVerticalGroup(
             tokoStokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tokoStokLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tokoStokLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(tokoStok, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 260, 50));
@@ -135,16 +135,16 @@ public class v_Toko extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Bebas Neue", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Data Barang");
+        jLabel2.setText("Data STOK");
 
         javax.swing.GroupLayout tokoBarangLayout = new javax.swing.GroupLayout(tokoBarang);
         tokoBarang.setLayout(tokoBarangLayout);
         tokoBarangLayout.setHorizontalGroup(
             tokoBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tokoBarangLayout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(78, 78, 78))
+                .addGap(89, 89, 89))
         );
         tokoBarangLayout.setVerticalGroup(
             tokoBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

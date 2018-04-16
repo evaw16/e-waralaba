@@ -30,7 +30,7 @@ public class gudang1 extends javax.swing.JPanel {
 
     public gudang1() {
         initComponents();
-        tampilBarang();
+//        tampilBarang();
 
 //        btnSimpan.addActionListener(new ActionListener() {
 //            @Override
@@ -89,36 +89,36 @@ public class gudang1 extends javax.swing.JPanel {
 
     }
 
-    private void clear() {
-        nama_barang.setText("");
-        jumlah_stok.setText("");
-        harga_barang.setText("");
-    }
+//    private void clear() {
+//        nama_barang.setText("");
+//        jumlah_stok.setText("");
+//        harga_barang.setText("");
+//    }
 
-    private void tampilBarang() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Kode Barang");
-        model.addColumn("Nama Barang");
-        model.addColumn("Jumlah Stok");
-        model.addColumn("Harga");
-        try {
-            String sql = "select * from barang";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-
-            int no = 0;
-            while (resultSet.next()) {
-                no++;
-                model.addRow(new Object[]{
-                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah_stok"), resultSet.getString("harga")
-                });
-            }
-            table_barang.setModel(model);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
+//    private void tampilBarang() {
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("Kode Barang");
+//        model.addColumn("Nama Barang");
+//        model.addColumn("Jumlah Stok");
+//        model.addColumn("Harga");
+//        try {
+//            String sql = "select * from barang";
+//            statement = connection.createStatement();
+//            resultSet = statement.executeQuery(sql);
+//
+//            int no = 0;
+//            while (resultSet.next()) {
+//                no++;
+//                model.addRow(new Object[]{
+//                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah_stok"), resultSet.getString("harga")
+//                });
+//            }
+//            table_barang.setModel(model);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
+    
     public JButton getBtnHapus() {
         return btnHapus;
     }
@@ -157,6 +157,12 @@ public class gudang1 extends javax.swing.JPanel {
 
     public JTable getTable_barang() {
         return table_barang;
+    }
+    public void setTabelGudang1(DefaultTableModel tabel) {
+        this.table_barang.setModel(tabel);
+    }
+    public void setTabel(JTable t, DefaultTableModel tabel) {
+        t.setModel(tabel);
     }
 
     public void setHarga_barang(String harga_barang) {

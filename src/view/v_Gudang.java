@@ -101,10 +101,10 @@ public class v_Gudang extends javax.swing.JFrame {
         gudangBarang.setLayout(gudangBarangLayout);
         gudangBarangLayout.setHorizontalGroup(
             gudangBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gudangBarangLayout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+            .addGroup(gudangBarangLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
                 .addComponent(jLabel2)
-                .addGap(75, 75, 75))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         gudangBarangLayout.setVerticalGroup(
             gudangBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,16 +140,16 @@ public class v_Gudang extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Bebas Neue", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Data STOK");
+        jLabel3.setText("Data PENGIRIMAN BARANG");
 
         javax.swing.GroupLayout gudangStokLayout = new javax.swing.GroupLayout(gudangStok);
         gudangStok.setLayout(gudangStokLayout);
         gudangStokLayout.setHorizontalGroup(
             gudangStokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gudangStokLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel3)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         gudangStokLayout.setVerticalGroup(
             gudangStokLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

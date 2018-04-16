@@ -28,6 +28,7 @@ public class c_gudang1 {
         gudang.getBtnUbah().addActionListener(new ButtonUbah());
         gudang.getBtnHapus().addActionListener(new ButtonHapus());//bisa
         gudang.getBtnReset().addActionListener(new ButtonReset());//bisa
+        gudang.setTabel(gudang.getTable_barang(),model.tableGudang1());
 
     }
 
@@ -70,13 +71,15 @@ public class c_gudang1 {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            String kodeBarang = gudang.getKode_barang().getText();
             String namaBarang = gudang.getNama_barang().getText();
-            String jumlahStok = gudang.getJumlah_stok().getText();
-            String hargaBarang = gudang.getHarga_barang().getText();
+            int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText()); 
+            int hargaBarang = Integer.parseInt(gudang.getHarga_barang().getText());
+            String kodeBarang = gudang.getKode_barang().getText();
 
             try {
-                model.updateData(kodeBarang, namaBarang, jumlahStok, hargaBarang);
+                model.updateData(namaBarang, jumlahStok, hargaBarang,kodeBarang);
+                gudang.setTabel(gudang.getTable_barang(),model.tableGudang1());
+                clear();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -91,14 +94,15 @@ public class c_gudang1 {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("asdfghjkl;");
+//            System.out.println("asdfghjkl;");
 //            int kodeBarang = Integer.parseInt(gudang.getKode_barang().getText().toString());
             String namaBarang = gudang.getNama_barang().getText();
             int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText()); 
             int hargaBarang = Integer.parseInt(gudang.getHarga_barang().getText());
-            System.out.println(namaBarang + " " + jumlahStok + " " + hargaBarang);
+//            System.out.println(namaBarang + " " + jumlahStok + " " + hargaBarang);
             try {
                 model.simpanData(namaBarang, jumlahStok, hargaBarang);
+                gudang.setTabel(gudang.getTable_barang(),model.tableGudang1());
                 clear();
             } catch (Exception le) {
 //                System.out.println(e.getMessage());
@@ -109,6 +113,7 @@ public class c_gudang1 {
 
     private void clear() {
         String clear = "";
+        gudang.setKode_barang(clear);
         gudang.setHarga_barang(clear);
         gudang.setNama_barang(clear);
         gudang.setJumlah_stok(clear);

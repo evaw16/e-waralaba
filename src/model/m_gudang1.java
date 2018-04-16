@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import javax.swing.table.DefaultTableModel;
+import view.gudang1;
 
 /**
  *
@@ -22,6 +24,7 @@ public class m_gudang1 {
     Connection connection;
     Statement statement;
     ResultSet resultSet;
+    gudang1 gudang = new gudang1();
 
     public m_gudang1() {
         try {
@@ -37,9 +40,9 @@ public class m_gudang1 {
         try {
             String sql = "INSERT INTO barang values(NULL,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(2, namaBarang);
-            preparedStatement.setInt(3, jumlahStok);
-            preparedStatement.setInt(4, hargaBarang);
+            preparedStatement.setString(1, namaBarang);
+            preparedStatement.setInt(2, jumlahStok);
+            preparedStatement.setInt(3, hargaBarang);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
@@ -49,14 +52,14 @@ public class m_gudang1 {
 
     }
 
-    public void updateData(String kodeBarang, String namaBarang, String jumlahStok, String hargaBarang) throws SQLException {
-        String sql = "update barang set kode_barang= ?, nama_barang = ?jumlah_stok= ? harga= ? where kode_barang= ?";
+    public void updateData(String namaBarang, int jumlahStok, int hargaBarang, String kodeBarang) throws SQLException {
+        String sql = "update barang set nama_barang = ? , jumlah_stok = ? , harga= ? where kode_barang= ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, kodeBarang);
-        preparedStatement.setString(2, namaBarang);
-        preparedStatement.setString(3, jumlahStok);
-        preparedStatement.setString(4, hargaBarang);
-        preparedStatement.setString(5, kodeBarang);
+//        preparedStatement.setString(1, kodeBarang);
+        preparedStatement.setString(1, namaBarang);
+        preparedStatement.setInt(2, jumlahStok);
+        preparedStatement.setInt(3, hargaBarang);
+        preparedStatement.setString(4, kodeBarang);
         preparedStatement.executeUpdate();
     }
 
@@ -65,6 +68,32 @@ public class m_gudang1 {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, kodeBarang);
         preparedStatement.executeUpdate();
+
+    }
+
+    public DefaultTableModel tableGudang1() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Kode Barang");
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah Stok");
+        model.addColumn("Harga");
+        try {
+            String sql = "select * from barang";
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+
+            int no = 0;
+            while (resultSet.next()) {
+                no++;
+                model.addRow(new Object[]{
+                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah_stok"), resultSet.getString("harga")
+                });
+            }
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return model;
 
     }
 
