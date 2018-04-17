@@ -58,6 +58,8 @@ public class c_gudang1 {
             String kodeBarang = gudang.getKode_barang().getText();
             try {
                 model.hapusData(kodeBarang);
+                gudang.setTabel(gudang.getTable_barang(),model.tableGudang1());
+                clear();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

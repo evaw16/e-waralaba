@@ -11,6 +11,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.m_admin1;
 import model.m_gudang1;
 import model.m_login;
 import view.Login;
@@ -70,8 +71,8 @@ public class c_login {
                     gudang1 v1 = new gudang1();
                     gudang2 v2 = new gudang2();
                     v_Gudang gudang = new v_Gudang(v1, v2);
-                    m_gudang1 m = new m_gudang1();
-                    c_gudang1 c = new c_gudang1(m, v1);
+                    m_gudang1 mg1 = new m_gudang1();
+                    c_gudang1 cg1 = new c_gudang1(mg1, v1);
                     gudang.setVisible(true);
                 } else if (status == 1) {
                     login.dispose();
@@ -79,6 +80,8 @@ public class c_login {
                     admin2 a2 = new admin2();
                     admin3 a3 = new admin3();
                     v_Admin admin = new v_Admin(a1, a2, a3);
+                    m_admin1 ma1 = new m_admin1();
+                    c_admin1 ca1 = new c_admin1(ma1, a1);
                     admin.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "Login Gagal !");

@@ -24,7 +24,7 @@ public class m_gudang1 {
     Connection connection;
     Statement statement;
     ResultSet resultSet;
-    gudang1 gudang = new gudang1();
+    
 
     public m_gudang1() {
         try {

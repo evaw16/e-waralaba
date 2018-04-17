@@ -22,8 +22,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class gudang1 extends javax.swing.JPanel {
 
-    private String namaBarang;
-    private String kodeBarang, harga, jumlahStok;
+//    private String namaBarang;
+//    private String kodeBarang, harga, jumlahStok;
     Connection connection = config.Connection();
     Statement statement;
     ResultSet resultSet;
