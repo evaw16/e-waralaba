@@ -5,11 +5,13 @@
  */
 package view;
 
+import controller.c_login;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
+import model.m_login;
 
 /**
  *
@@ -29,32 +31,34 @@ public class v_Admin extends javax.swing.JFrame {
         this.a1 = a1;
         this.a2 = a2;
         this.a3 = a3;
-        
+
         panelAdmin.setLayout(layout);
         panelAdmin.add(a1);
         panelAdmin.add(a2);
         panelAdmin.add(a3);
-        
+
         this.a1.setVisible(true);
         this.a2.setVisible(false);
         this.a3.setVisible(false);
-        
-        
+
         btnLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Login a = new Login();
-                a.setVisible(true);
+                m_login m = new m_login();
+                Login v = new Login();
+                c_login c = new c_login(m, v);
                 dispose();
             }
         });
 
     }
-    private void setColor(JPanel panel){
-        panel.setBackground(new Color (245,87,108));
+
+    private void setColor(JPanel panel) {
+        panel.setBackground(new Color(245, 87, 108));
     }
-    private void resetColor(JPanel panel){
-        panel.setBackground(new Color(247,176,255));
+
+    private void resetColor(JPanel panel) {
+        panel.setBackground(new Color(247, 176, 255));
     }
 
     /**
@@ -255,7 +259,7 @@ public class v_Admin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new v_Admin(a1,a2,a3).setVisible(true);
+                new v_Admin(a1, a2, a3).setVisible(true);
             }
         });
     }

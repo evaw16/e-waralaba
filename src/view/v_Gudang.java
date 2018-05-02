@@ -6,11 +6,13 @@
 package view;
 
 import controller.c_gudang1;
+import controller.c_login;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
+import model.m_login;
 
 /**
  *
@@ -42,8 +44,9 @@ public class v_Gudang extends javax.swing.JFrame {
         btnLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Login a = new Login();
-                a.setVisible(true);
+                m_login m = new m_login();
+                Login v = new Login();
+                c_login c = new c_login(m, v);
                 dispose();
             }
         });

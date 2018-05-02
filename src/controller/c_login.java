@@ -66,6 +66,7 @@ public class c_login {
                     toko2 t2 = new toko2();
                     v_Toko toko = new v_Toko(t1, t2);
                     toko.setVisible(true);
+                    login = null;
                 } else if (status == 2) {
                     login.dispose();
                     gudang1 v1 = new gudang1();
@@ -74,6 +75,7 @@ public class c_login {
                     m_gudang1 mg1 = new m_gudang1();
                     c_gudang1 cg1 = new c_gudang1(mg1, v1);
                     gudang.setVisible(true);
+                    login = null;
                 } else if (status == 1) {
                     login.dispose();
                     admin1 a1 = new admin1();
@@ -83,6 +85,7 @@ public class c_login {
                     m_admin1 ma1 = new m_admin1();
                     c_admin1 ca1 = new c_admin1(ma1, a1);
                     admin.setVisible(true);
+                    login = null;
                 } else {
                     JOptionPane.showMessageDialog(null, "Login Gagal !");
                 }

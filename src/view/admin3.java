@@ -5,17 +5,56 @@
  */
 package view;
 
+import connector.config;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.jdbc.JDBCCategoryDataset;
+
 /**
  *
  * @author Brian R
  */
 public class admin3 extends javax.swing.JPanel {
 
-    /**
-     * Creates new form admin3
-     */
+    Connection connection = config.Connection();
+    Statement statement;
+    ResultSet resultSet;
+
     public admin3() {
         initComponents();
+        tampilBarang();
+    }
+
+    private void tampilBarang() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nama Toko");
+        model.addColumn("Nama Barang");
+        model.addColumn("Tanggal");
+        model.addColumn("Jumlah");
+        try {
+            String sql = "select * from tb_penjualan p join tb_barangtoko b on p.id_barangtoko = b.id_barangtoko join users u on b.id = u.id";
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+
+            int no = 0;
+            while (resultSet.next()) {
+                no++;
+                model.addRow(new Object[]{
+                    resultSet.getString("u.username"), resultSet.getString("nama_barang"), resultSet.getString("tanggal_penjualan"), resultSet.getString("jumlah_penjualan")
+                });
+            }
+            table_toko.setModel(model);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -28,36 +67,64 @@ public class admin3 extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_toko = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(690, 530));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_toko.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tanggal", "Kode Barang", "Nama Barang", "Jumlah Terjual"
+                "Nama Toko", "Nama Barang", "Tanggal", "Jumlah Terjual"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_toko);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 670, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 670, 330));
         add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 170, -1));
+
+        jButton1.setText("Chart");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, -1, -1));
 
         jLabel1.setText("Pencarian");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            String sql = "select nama_barang, jumlah_penjualan from tb_penjualan";
+            JDBCCategoryDataset dataset = new JDBCCategoryDataset(config.connection, sql);
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            JFreeChart chart = ChartFactory.createLineChart("Chart", "Jumlah Penjualan", "Nama Barang", dataset, PlotOrientation.VERTICAL, false, true, true);
+            BarRenderer render = null;
+            CategoryPlot plot = null;
+            render = new BarRenderer();
+            ChartFrame frame = new ChartFrame("Chart", chart);
+            frame.setVisible(true);
+            frame.setSize(400, 650);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable table_toko;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,11 +5,13 @@
  */
 package view;
 
+import controller.c_login;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
+import model.m_login;
 
 /**
  *
@@ -40,8 +42,9 @@ public class v_Toko extends javax.swing.JFrame {
         btnLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Login a = new Login();
-                a.setVisible(true);
+                m_login m = new m_login();
+                Login v = new Login();
+                c_login c = new c_login(m, v);
                 dispose();
             }
         });
@@ -77,6 +80,7 @@ public class v_Toko extends javax.swing.JFrame {
 
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnLogout.png"))); // NOI18N
         btnLogout.setToolTipText("");
+        btnLogout.setContentAreaFilled(false);
         getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, -1));
 
         panelToko.setBackground(new java.awt.Color(255, 255, 255));
