@@ -59,6 +59,11 @@ public class gudang2 extends javax.swing.JPanel {
         return jumlah_field;
     }
 
+    public void setJumlah_field(String jumlah_field) {
+        this.jumlah_field.setText(jumlah_field);
+    }
+    
+
     public JTable getTable_gudang2() {
         return table_gudang2;
     }

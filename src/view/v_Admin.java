@@ -78,9 +78,12 @@ public class v_Admin extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         adminToko = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelAdmin.setBackground(new java.awt.Color(255, 255, 255));
@@ -94,10 +97,10 @@ public class v_Admin extends javax.swing.JFrame {
         );
         panelAdminLayout.setVerticalGroup(
             panelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panelAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 690, -1));
+        getContentPane().add(panelAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 690, 490));
 
         adminUsers.setBackground(new java.awt.Color(245, 87, 108));
         adminUsers.setPreferredSize(new java.awt.Dimension(260, 47));
@@ -162,6 +165,7 @@ public class v_Admin extends javax.swing.JFrame {
         getContentPane().add(adminGudang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, -1, -1));
 
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnLogout.png"))); // NOI18N
+        btnLogout.setBorderPainted(false);
         btnLogout.setContentAreaFilled(false);
         getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, -1));
 
@@ -196,6 +200,21 @@ public class v_Admin extends javax.swing.JFrame {
 
         getContentPane().add(adminToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, -1, -1));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnExit.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 30, -1));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHide.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 30, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bgAdmin.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -228,6 +247,10 @@ public class v_Admin extends javax.swing.JFrame {
         this.a2.setVisible(false);
         this.a3.setVisible(true);
     }//GEN-LAST:event_adminTokoMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,6 +292,8 @@ public class v_Admin extends javax.swing.JFrame {
     private javax.swing.JPanel adminToko;
     private javax.swing.JPanel adminUsers;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

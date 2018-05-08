@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.m_admin1;
 import model.m_gudang1;
+import model.m_gudang2;
 import model.m_login;
 import view.Login;
 import view.admin1;
@@ -74,6 +75,8 @@ public class c_login {
                     v_Gudang gudang = new v_Gudang(v1, v2);
                     m_gudang1 mg1 = new m_gudang1();
                     c_gudang1 cg1 = new c_gudang1(mg1, v1);
+//                    m_gudang2 mg2 = new m_gudang2();
+//                    c_gudang2 cg2 = new c_gudang2(mg2, v2);
                     gudang.setVisible(true);
                     login = null;
                 } else if (status == 1) {

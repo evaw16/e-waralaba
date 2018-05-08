@@ -150,17 +150,25 @@ public class admin1 extends javax.swing.JPanel {
         jLabel3.setText("Password");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
-        btnSimpan.setText("Simpan");
-        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSimpan.png"))); // NOI18N
+        btnSimpan.setBorderPainted(false);
+        btnSimpan.setContentAreaFilled(false);
+        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 120, -1));
 
-        btnReset.setText("Reset");
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnReset.png"))); // NOI18N
+        btnReset.setBorderPainted(false);
+        btnReset.setContentAreaFilled(false);
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 120, -1));
 
-        btnUbah.setText("Ubah");
-        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
+        btnUbah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUbah.png"))); // NOI18N
+        btnUbah.setBorderPainted(false);
+        btnUbah.setContentAreaFilled(false);
+        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
 
-        btnHapus.setText("Hapus");
-        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
+        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHapus.png"))); // NOI18N
+        btnHapus.setBorderPainted(false);
+        btnHapus.setContentAreaFilled(false);
+        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 130, -1));
 
         jLabel4.setText("Pencarian");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));

@@ -107,13 +107,14 @@ public class admin3 extends javax.swing.JPanel {
             JDBCCategoryDataset dataset = new JDBCCategoryDataset(config.connection, sql);
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
-            JFreeChart chart = ChartFactory.createLineChart("Chart", "Jumlah Penjualan", "Nama Barang", dataset, PlotOrientation.VERTICAL, false, true, true);
+            JFreeChart chart = ChartFactory.createLineChart("Chart", "Nama Barang", "Jumlah Penjualan", dataset, PlotOrientation.VERTICAL, false, true, true);
             BarRenderer render = null;
             CategoryPlot plot = null;
             render = new BarRenderer();
             ChartFrame frame = new ChartFrame("Chart", chart);
             frame.setVisible(true);
             frame.setSize(400, 650);
+            frame.setLocationRelativeTo(null);
         } catch (Exception e) {
             e.getMessage();
         }

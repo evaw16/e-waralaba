@@ -138,6 +138,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(showPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, -1, -1));
 
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnLogin.png"))); // NOI18N
+        btnLogin.setBorderPainted(false);
         btnLogin.setContentAreaFilled(false);
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 419, 120, 50));
 

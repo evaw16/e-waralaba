@@ -7,6 +7,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import model.m_admin1;
 import view.admin1;
 
@@ -40,12 +41,16 @@ public class c_admin1 {
             String name = view.getNameAdmin1().getText();
             String username = view.getUserAdmin1().getText();
             String password = view.getPassAdmin1().getText();
-            try {
-                model.simpanData(name, username, password);
-                view.setTabel(view.getTable_users(), model.tableAdmin1());
-                clear();
-            } catch (Exception e) {
-                e.getMessage();
+            if (name.equalsIgnoreCase("") || username.equalsIgnoreCase("") || password.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Data tidak boleh kosong");
+            } else {
+                try {
+                    model.simpanData(name, username, password);
+                    view.setTabel(view.getTable_users(), model.tableAdmin1());
+                    clear();
+                } catch (Exception e) {
+                    e.getMessage();
+                }
             }
         }
     }
@@ -61,12 +66,16 @@ public class c_admin1 {
             String username = view.getUserAdmin1().getText();
             String password = view.getPassAdmin1().getText();
             String id = view.getIdAdmin1().getText();
-            try {
-                model.ubahData(name, username, password, id);
-                view.setTabel(view.getTable_users(), model.tableAdmin1());
-                clear();
-            } catch (Exception e) {
-                e.getMessage();
+            if (name.equalsIgnoreCase("") || username.equalsIgnoreCase("") || password.equalsIgnoreCase("")) {
+                JOptionPane.showMessageDialog(null, "Data tidak boleh kosong");
+            } else {
+                try {
+                    model.ubahData(name, username, password, id);
+                    view.setTabel(view.getTable_users(), model.tableAdmin1());
+                    clear();
+                } catch (Exception e) {
+                    e.getMessage();
+                }
             }
         }
     }
