@@ -36,11 +36,10 @@ public class m_login {
         }
     }
 
-    public int getAkun(String user, String pass) throws SQLException {
-
+    public int[] getAkun(String user, String pass) throws SQLException {
+        status = new int[2];
 //        String sql = "select * from users where username='" + user + "' and password='" + pass + "'";
         String sql = "select * from users where username = ? and password = ?";
-
         connection = config.Connection();
         PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
         preparedStatement.setString(1, user);
@@ -49,8 +48,22 @@ public class m_login {
 //        statement = connection.createStatement();
 //        resultSet = statement.executeQuery(sql);
         resultSet.next();
-        status = resultSet.getInt("status");
+        status[0] = resultSet.getInt("id");
+        status[1] = resultSet.getInt("status");
         return status;
+    }
+    
+    public String getUsername(int id) throws SQLException {
+        String sql = "select * from users where id = ?;";
+        connection = config.Connection();
+        PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        resultSet = preparedStatement.executeQuery();
+//        statement = connection.createStatement();
+//        resultSet = statement.executeQuery(sql);
+        resultSet.next();
+        String user = resultSet.getString("username");
+        return user;
     }
 
 }

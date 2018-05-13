@@ -67,6 +67,8 @@ public class v_Gudang extends javax.swing.JFrame {
     private void initComponents() {
 
         btnLogout = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         gudangBarang = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         panelGudang = new javax.swing.JPanel();
@@ -77,6 +79,7 @@ public class v_Gudang extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnLogout.png"))); // NOI18N
@@ -87,6 +90,26 @@ public class v_Gudang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 150, -1));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHide.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 30, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnExit.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 30, -1));
 
         gudangBarang.setBackground(new java.awt.Color(245, 87, 108));
         gudangBarang.setRequestFocusEnabled(false);
@@ -129,10 +152,10 @@ public class v_Gudang extends javax.swing.JFrame {
         );
         panelGudangLayout.setVerticalGroup(
             panelGudangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panelGudang, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 690, 530));
+        getContentPane().add(panelGudang, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 690, 490));
 
         gudangStok.setBackground(new java.awt.Color(247, 176, 255));
         gudangStok.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -198,6 +221,14 @@ public class v_Gudang extends javax.swing.JFrame {
         g2.setVisible(true);
     }//GEN-LAST:event_gudangStokMousePressed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setState(ICONIFIED);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,6 +268,8 @@ public class v_Gudang extends javax.swing.JFrame {
     private javax.swing.JButton btnLogout;
     private javax.swing.JPanel gudangBarang;
     private javax.swing.JPanel gudangStok;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -252,17 +252,26 @@ public class gudang1 extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
         add(harga_barang, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 180, -1));
 
-        btnSimpan.setText("Simpan");
-        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, -1, -1));
+        btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSimpan.png"))); // NOI18N
+        btnSimpan.setBorderPainted(false);
+        btnSimpan.setContentAreaFilled(false);
+        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 130, 50));
 
-        btnUbah.setText("Ubah");
-        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
+        btnUbah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUbah.png"))); // NOI18N
+        btnUbah.setToolTipText("");
+        btnUbah.setBorderPainted(false);
+        btnUbah.setContentAreaFilled(false);
+        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
 
-        btnReset.setText("Reset");
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnReset.png"))); // NOI18N
+        btnReset.setBorderPainted(false);
+        btnReset.setContentAreaFilled(false);
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
 
-        btnHapus.setText("Hapus");
-        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, -1, -1));
+        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHapus.png"))); // NOI18N
+        btnHapus.setBorderPainted(false);
+        btnHapus.setContentAreaFilled(false);
+        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         cari_barang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

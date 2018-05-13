@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -27,7 +28,8 @@ public class Login extends javax.swing.JFrame {
     Connection connection;
     Statement statement;
     ResultSet resultSet;
-    public static int status;
+    public static int status[];
+    public static int id;
     private String user;
     private String pass;
 
@@ -116,6 +118,10 @@ public class Login extends javax.swing.JFrame {
     public JTextField getUsername() {
         return username;
     }
+
+    public JCheckBox getShowPassword() {
+        return showPassword;
+    }
     
 
     @SuppressWarnings("unchecked")
@@ -126,10 +132,13 @@ public class Login extends javax.swing.JFrame {
         password = new javax.swing.JPasswordField();
         showPassword = new javax.swing.JCheckBox();
         btnLogin = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("E-Waralaba");
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 280, 40));
         getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 280, 40));
@@ -142,11 +151,39 @@ public class Login extends javax.swing.JFrame {
         btnLogin.setContentAreaFilled(false);
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 419, 120, 50));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHide1.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 20, 30, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnExit1.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, 30, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bgLogin.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        setState(ICONIFIED);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,6 +230,8 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField password;
     private javax.swing.JCheckBox showPassword;

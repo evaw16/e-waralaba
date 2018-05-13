@@ -64,6 +64,7 @@ public class toko1 extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         ddToko = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(690, 530));
@@ -80,14 +81,11 @@ public class toko1 extends javax.swing.JPanel {
                 jTextField2ActionPerformed(evt);
             }
         });
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 130, -1));
+        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 110, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Tanggal", "Kode Barang", "Nama Barang", "Jumlah Terjual"
@@ -95,28 +93,38 @@ public class toko1 extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(252, 77, 430, 470));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 77, 410, 470));
 
         jLabel3.setText("Jumlah Terjual");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        jButton1.setText("Simpan");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSimpan.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 130, -1));
 
-        jButton2.setText("Ubah");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUbah.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 130, -1));
 
-        jButton3.setText("Reset");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnReset.png"))); // NOI18N
+        jButton3.setToolTipText("");
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 130, -1));
 
-        jButton4.setText("Hapus");
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHapus.png"))); // NOI18N
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 130, -1));
         add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 170, -1));
 
         jLabel4.setText("Pencarian");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
 
         add(ddToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 130, -1));
+        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 80, 130, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -130,6 +138,7 @@ public class toko1 extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

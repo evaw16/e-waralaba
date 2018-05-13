@@ -139,7 +139,7 @@ public class gudang2 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Id", "Id Toko", "Id Barang", "Jumlah"
+                "Id Toko", "Id Barang", "Jumlah"
             }
         ));
         jScrollPane1.setViewportView(table_gudang2);
@@ -176,17 +176,30 @@ public class gudang2 extends javax.swing.JPanel {
         jLabel4.setText("Jumlah");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
 
-        btnSimpan.setText("Simpan");
-        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
+        btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSimpan.png"))); // NOI18N
+        btnSimpan.setBorderPainted(false);
+        btnSimpan.setContentAreaFilled(false);
+        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 130, -1));
 
-        btnUbah.setText("Ubah");
-        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+        btnUbah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUbah.png"))); // NOI18N
+        btnUbah.setBorderPainted(false);
+        btnUbah.setContentAreaFilled(false);
+        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 130, -1));
 
-        btnHapus.setText("Hapus");
-        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
+        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHapus.png"))); // NOI18N
+        btnHapus.setBorderPainted(false);
+        btnHapus.setContentAreaFilled(false);
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
+        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 130, -1));
 
-        btnReset.setText("Reset");
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, -1, -1));
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnReset.png"))); // NOI18N
+        btnReset.setBorderPainted(false);
+        btnReset.setContentAreaFilled(false);
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 130, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -196,6 +209,10 @@ public class gudang2 extends javax.swing.JPanel {
     private void jumlah_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlah_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jumlah_fieldActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHapusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
