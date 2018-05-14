@@ -9,11 +9,14 @@ import connector.config;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import model.m_gudang2;
 
 /**
  *
@@ -24,6 +27,8 @@ public class gudang2 extends javax.swing.JPanel {
     Connection connection = config.Connection();
     Statement statement;
     ResultSet resultSet;
+    public static int id[];
+    public static int kode_barang[];
 
     public gudang2() {
         initComponents();
@@ -47,12 +52,30 @@ public class gudang2 extends javax.swing.JPanel {
         return btnUbah;
     }
 
-    public JComboBox<String> getDdBarang() {
+    public JComboBox getDdBarang() {
         return ddBarang;
     }
 
-    public JComboBox<String> getDdUsers() {
+    public JComboBox getDdUsers() {
         return ddUsers;
+    }
+
+    public void setDdUsers(String ddUsers) {
+        this.ddUsers.addItem(ddUsers);
+    }
+
+    public void setDdBarang(String ddBarang) {
+        this.ddBarang.addItem(ddBarang);
+    }
+
+    public void setCbBarang(Object[] barang) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel(barang);
+        this.getDdBarang().setModel(model);
+    }
+
+    public void setCbUsers(Object[] user) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel(user);
+        this.getDdUsers().setModel(model);
     }
 
     public JTextField getJumlah_field() {
@@ -62,7 +85,6 @@ public class gudang2 extends javax.swing.JPanel {
     public void setJumlah_field(String jumlah_field) {
         this.jumlah_field.setText(jumlah_field);
     }
-    
 
     public JTable getTable_gudang2() {
         return table_gudang2;
@@ -77,33 +99,33 @@ public class gudang2 extends javax.swing.JPanel {
     }
 
     private void DropToko() {
-        try {
-            String sql = "select * from users where status = 3 order by username";
-            statement = connection.prepareStatement(sql);
-            resultSet = statement.executeQuery(sql);
-
-            while (resultSet.next()) {
-                String users = resultSet.getString("users.username");
-                ddUsers.addItem(users);
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
+//        try {
+//            String sql = "select * from users where status = 3 order by username";
+//            statement = connection.prepareStatement(sql);
+//            resultSet = statement.executeQuery(sql);
+//
+//            while (resultSet.next()) {
+//                String users = resultSet.getString("users.username");
+//                ddUsers.addItem(users);
+//            }
+//        } catch (Exception e) {
+//            e.getMessage();
+//        }
     }
 
     private void DropBarang() {
-        try {
-            String sql = "select * from barang order by nama_barang";
-            statement = connection.prepareStatement(sql);
-            resultSet = statement.executeQuery(sql);
-
-            while (resultSet.next()) {
-                String barang = resultSet.getString("barang.nama_barang");
-                ddBarang.addItem(barang);
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
+//        try {
+//            String sql = "select * from barang order by nama_barang";
+//            statement = connection.prepareStatement(sql);
+//            resultSet = statement.executeQuery(sql);
+//
+//            while (resultSet.next()) {
+//                String barang = resultSet.getString("barang.nama_barang");
+//                ddBarang.addItem(barang);
+//            }
+//        } catch (Exception e) {
+//            e.getMessage();
+//        }
     }
 
     /**
@@ -156,6 +178,11 @@ public class gudang2 extends javax.swing.JPanel {
         jLabel1.setText("Pencarian");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
+        ddUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ddUsersActionPerformed(evt);
+            }
+        });
         add(ddUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 100, -1));
 
         add(ddBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 100, -1));
@@ -213,6 +240,10 @@ public class gudang2 extends javax.swing.JPanel {
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void ddUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddUsersActionPerformed
+        
+    }//GEN-LAST:event_ddUsersActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
