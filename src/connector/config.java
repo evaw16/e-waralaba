@@ -14,19 +14,24 @@ import java.sql.DriverManager;
  */
 public class config {
 
-    public static Connection connection;
+    public static Connection connection = null;
 
     public static Connection Connection() {
 
         try {
-            String username = "root";
-            String password = "";
+//            String username = "root";
+//            String password = "";
+            String username = "postgres";
+            String password = "brianrizqi";
             String database = "e-waralaba";
-            String url = "jdbc:mysql://localhost/" + database;
-            Class.forName("com.mysql.jdbc.Driver");
+//            String url = "jdbc:mysql://localhost/" + database;
+//            Class.forName("com.postgresql.jdbc.Driver");
+            String url = "jdbc:postgresql://localhost:5432/"+database;
             connection = DriverManager.getConnection(url, username, password);
+//            Class.forName("org.postgresql.Driver");
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("ERROR");
         }
 
         return connection;

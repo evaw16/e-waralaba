@@ -5,11 +5,12 @@
  */
 package model;
 
-import com.mysql.jdbc.PreparedStatement;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import connector.config;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import static view.Login.status;
@@ -39,7 +40,7 @@ public class m_login {
     public int[] getAkun(String user, String pass) throws SQLException {
         status = new int[2];
 //        String sql = "select * from users where username='" + user + "' and password='" + pass + "'";
-        String sql = "select * from users where username = ? and password = ?";
+        String sql = "select * from public.users where username = ? and password = ?";
         connection = config.Connection();
         PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
         preparedStatement.setString(1, user);
@@ -54,7 +55,7 @@ public class m_login {
     }
     
     public String getUsername(int id) throws SQLException {
-        String sql = "select * from users where id = ?;";
+        String sql = "select * from public.users where id = ?;";
         connection = config.Connection();
         PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);

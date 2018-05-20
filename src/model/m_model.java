@@ -15,9 +15,9 @@ public abstract class m_model extends connector.config {
         
     }
 
-    public abstract void simpanData(String a);
+    public abstract void simpanData();
 
-    public abstract void ubahData(String a);
+    public abstract void ubahData();
 
-    public abstract void hapusData(int a);
+    public abstract void hapusData();
 }

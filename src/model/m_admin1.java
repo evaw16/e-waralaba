@@ -34,7 +34,7 @@ public class m_admin1 {
     public void simpanData(String nameAdmin1, String userAdmin1, String passAdmin1) {
         int status = 3;
         try {
-            String sql = "INSERT INTO users values(NULL,?,?,?,?)";
+            String sql = "INSERT INTO users (nama,username,password,status) values(?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, nameAdmin1);
             preparedStatement.setString(2, userAdmin1);
@@ -46,25 +46,26 @@ public class m_admin1 {
         }
     }
 
-    public void ubahData(String nameAdmin1, String userAdmin1, String passAdmin1, String idAdmin1) {
+    public void ubahData(String nameAdmin1, String userAdmin1, String passAdmin1, int idAdmin1) {
         try {
-            String sql = "update users set nama = ? , username = ? , password = ? where id = ?";
+//            String sql = "update users set nama = ? , username = ? , password = ? where id = ?";
+            String sql = "update users SET (nama,username,password) = (?,?,?) where id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, nameAdmin1);
             preparedStatement.setString(2, userAdmin1);
             preparedStatement.setString(3, passAdmin1);
-            preparedStatement.setString(4, idAdmin1);
+            preparedStatement.setInt(4, idAdmin1);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
         }
     }
 
-    public void hapusData(String idAdmin1) {
+    public void hapusData(int idAdmin1) {
         try {
             String sql = "delete from users where id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, idAdmin1);
+            preparedStatement.setInt(1, idAdmin1);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.getMessage();

@@ -55,7 +55,7 @@ public class c_gudang1 {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            String kodeBarang = gudang.getKode_barang().getText();
+            int kodeBarang = Integer.parseInt(gudang.getKode_barang().getText());
             try {
                 model.hapusData(kodeBarang);
                 gudang.setTabel(gudang.getTable_barang(),model.tableGudang1());
@@ -76,7 +76,7 @@ public class c_gudang1 {
             String namaBarang = gudang.getNama_barang().getText();
             int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText()); 
             int hargaBarang = Integer.parseInt(gudang.getHarga_barang().getText());
-            String kodeBarang = gudang.getKode_barang().getText();
+            int kodeBarang = Integer.parseInt(gudang.getKode_barang().getText());
 
             try {
                 model.updateData(namaBarang, jumlahStok, hargaBarang,kodeBarang);

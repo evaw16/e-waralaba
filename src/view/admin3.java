@@ -30,7 +30,7 @@ public class admin3 extends javax.swing.JPanel {
 
     public admin3() {
         initComponents();
-        tampilBarang();
+//        tampilBarang();
     }
 
     private void tampilBarang() {

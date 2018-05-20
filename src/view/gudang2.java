@@ -36,6 +36,14 @@ public class gudang2 extends javax.swing.JPanel {
         DropBarang();
     }
 
+    public JTextField getId_barangtoko() {
+        return id_barangtoko;
+    }
+
+    public void setId_barangtoko(JTextField id_barangtoko) {
+        this.id_barangtoko = id_barangtoko;
+    }
+
     public JButton getBtnHapus() {
         return btnHapus;
     }
@@ -66,16 +74,6 @@ public class gudang2 extends javax.swing.JPanel {
 
     public void setDdBarang(String ddBarang) {
         this.ddBarang.addItem(ddBarang);
-    }
-
-    public void setCbBarang(Object[] barang) {
-        DefaultComboBoxModel model = new DefaultComboBoxModel(barang);
-        this.getDdBarang().setModel(model);
-    }
-
-    public void setCbUsers(Object[] user) {
-        DefaultComboBoxModel model = new DefaultComboBoxModel(user);
-        this.getDdUsers().setModel(model);
     }
 
     public JTextField getJumlah_field() {
@@ -151,6 +149,8 @@ public class gudang2 extends javax.swing.JPanel {
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        id_barangtoko = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(690, 530));
@@ -161,7 +161,7 @@ public class gudang2 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Id Toko", "Id Barang", "Jumlah"
+                "Id", "Id Toko", "Id Barang", "Jumlah"
             }
         ));
         jScrollPane1.setViewportView(table_gudang2);
@@ -183,35 +183,35 @@ public class gudang2 extends javax.swing.JPanel {
                 ddUsersActionPerformed(evt);
             }
         });
-        add(ddUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 100, -1));
+        add(ddUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 100, -1));
 
-        add(ddBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 100, -1));
+        add(ddBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 100, -1));
 
         jumlah_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jumlah_fieldActionPerformed(evt);
             }
         });
-        add(jumlah_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 110, -1));
+        add(jumlah_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 110, -1));
 
         jLabel2.setText("Toko");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
 
         jLabel3.setText("Barang");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
 
         jLabel4.setText("Jumlah");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSimpan.png"))); // NOI18N
         btnSimpan.setBorderPainted(false);
         btnSimpan.setContentAreaFilled(false);
-        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 130, -1));
+        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 130, -1));
 
         btnUbah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUbah.png"))); // NOI18N
         btnUbah.setBorderPainted(false);
         btnUbah.setContentAreaFilled(false);
-        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 130, -1));
+        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 130, -1));
 
         btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHapus.png"))); // NOI18N
         btnHapus.setBorderPainted(false);
@@ -221,12 +221,16 @@ public class gudang2 extends javax.swing.JPanel {
                 btnHapusActionPerformed(evt);
             }
         });
-        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 130, -1));
+        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 130, -1));
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnReset.png"))); // NOI18N
         btnReset.setBorderPainted(false);
         btnReset.setContentAreaFilled(false);
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 130, -1));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 130, -1));
+
+        jLabel5.setText("Id");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+        add(id_barangtoko, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -253,10 +257,12 @@ public class gudang2 extends javax.swing.JPanel {
     private javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> ddBarang;
     private javax.swing.JComboBox<String> ddUsers;
+    private javax.swing.JTextField id_barangtoko;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jumlah_field;

@@ -5,10 +5,14 @@
  */
 package view;
 
+import com.toedter.calendar.JDateChooser;
 import connector.config;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 /**
  *
@@ -19,29 +23,58 @@ public class toko1 extends javax.swing.JPanel {
     Connection connection = config.Connection();
     Statement statement;
     ResultSet resultSet;
-    
+
     public toko1() {
         initComponents();
-        dropDown();
-        
-    }
-    
-    private void dropDown(){
-        try {
-//            String sql = "select b.nama_barang from tb_penjualan t join barang b on t.kode_barang = b.kode_barang";
-            String sql = "select * from barang order by nama_barang";
-            statement = connection.prepareStatement(sql);
-            resultSet = statement.executeQuery(sql);
-            
-            while(resultSet.next()){
-                String barang = resultSet.getString("barang.nama_barang");
-                ddToko.addItem(barang);
-            }
-        } catch (Exception e){
-            e.getMessage();
-        }
     }
 
+    public JButton getBtnHapus() {
+        return btnHapus;
+    }
+
+    public JButton getBtnReset() {
+        return btnReset;
+    }
+
+    public JButton getBtnSimpan() {
+        return btnSimpan;
+    }
+
+    public JButton getBtnUbah() {
+        return btnUbah;
+    }
+
+    public JTextField getJumlah_terjual() {
+        return jumlah_terjual;
+    }
+
+    public JDateChooser getTanggal() {
+        return tanggal;
+    }
+
+    public void setJumlah_terjual(String jumlah_terjual) {
+        this.jumlah_terjual.setText(jumlah_terjual);
+    }
+
+    public void setDdToko(String ddToko) {
+        this.ddToko.addItem(ddToko);
+    }
+
+//    private void dropDown(){
+//        try {
+//       String sql = "select b.nama_barang from tb_penjualan t join barang b on t.kode_barang = b.kode_barang";
+//            String sql = "select * from barang order by nama_barang";
+//            statement = connection.prepareStatement(sql);
+//            resultSet = statement.executeQuery(sql);
+//            
+//            while(resultSet.next()){
+//                String barang = resultSet.getString("barang.nama_barang");
+//                ddToko.addItem(barang);
+//            }
+//        } catch (Exception e){
+//            e.getMessage();
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,18 +86,18 @@ public class toko1 extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jumlah_terjual = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
+        btnUbah = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         ddToko = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        tanggal = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(690, 530));
@@ -76,12 +109,12 @@ public class toko1 extends javax.swing.JPanel {
         jLabel2.setText("Barang");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jumlah_terjual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jumlah_terjualActionPerformed(evt);
             }
         });
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 110, -1));
+        add(jumlah_terjual, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 110, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,54 +131,54 @@ public class toko1 extends javax.swing.JPanel {
         jLabel3.setText("Jumlah Terjual");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSimpan.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 130, -1));
+        btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSimpan.png"))); // NOI18N
+        btnSimpan.setBorderPainted(false);
+        btnSimpan.setContentAreaFilled(false);
+        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 130, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUbah.png"))); // NOI18N
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 130, -1));
+        btnUbah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUbah.png"))); // NOI18N
+        btnUbah.setBorderPainted(false);
+        btnUbah.setContentAreaFilled(false);
+        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 130, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnReset.png"))); // NOI18N
-        jButton3.setToolTipText("");
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 130, -1));
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnReset.png"))); // NOI18N
+        btnReset.setToolTipText("");
+        btnReset.setBorderPainted(false);
+        btnReset.setContentAreaFilled(false);
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 130, -1));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHapus.png"))); // NOI18N
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 130, -1));
+        btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHapus.png"))); // NOI18N
+        btnHapus.setBorderPainted(false);
+        btnHapus.setContentAreaFilled(false);
+        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 130, -1));
         add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 170, -1));
 
         jLabel4.setText("Pencarian");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
 
         add(ddToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 130, -1));
-        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 80, 130, -1));
+        add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 80, 130, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jumlah_terjualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlah_terjualActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jumlah_terjualActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSimpan;
+    private javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> ddToko;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jumlah_terjual;
+    private com.toedter.calendar.JDateChooser tanggal;
     // End of variables declaration//GEN-END:variables
 }

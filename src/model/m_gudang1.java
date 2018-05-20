@@ -38,7 +38,8 @@ public class m_gudang1 {
     public void simpanData(String namaBarang, int jumlahStok, int hargaBarang) {
 //        String sql = "INSERT INTO barang values(" + kodeBarang + ",'" + namaBarang + "'," + jumlahStok + "," + hargaBarang + ")";
         try {
-            String sql = "INSERT INTO barang values(NULL,?,?,?)";
+//            String sql = "INSERT INTO barang values(NULL,?,?,?)";
+            String sql = "insert into barang (nama_barang,jumlah_stok,harga) values (?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, namaBarang);
             preparedStatement.setInt(2, jumlahStok);
@@ -52,21 +53,21 @@ public class m_gudang1 {
 
     }
 
-    public void updateData(String namaBarang, int jumlahStok, int hargaBarang, String kodeBarang) throws SQLException {
-        String sql = "update barang set nama_barang = ? , jumlah_stok = ? , harga= ? where kode_barang= ?";
+    public void updateData(String namaBarang, int jumlahStok, int hargaBarang, int kodeBarang) throws SQLException {
+        String sql = "update barang set (nama_barang,jumlah_stok,harga) = (?,?,?) where kode_barang= ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 //        preparedStatement.setString(1, kodeBarang);
         preparedStatement.setString(1, namaBarang);
         preparedStatement.setInt(2, jumlahStok);
         preparedStatement.setInt(3, hargaBarang);
-        preparedStatement.setString(4, kodeBarang);
+        preparedStatement.setInt(4, kodeBarang);
         preparedStatement.executeUpdate();
     }
 
-    public void hapusData(String kodeBarang) throws SQLException {
+    public void hapusData(int kodeBarang) throws SQLException {
         String sql = "delete from barang where kode_barang= ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, kodeBarang);
+        preparedStatement.setInt(1, kodeBarang);
         preparedStatement.executeUpdate();
 
     }

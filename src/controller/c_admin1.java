@@ -65,7 +65,7 @@ public class c_admin1 {
             String name = view.getNameAdmin1().getText();
             String username = view.getUserAdmin1().getText();
             String password = view.getPassAdmin1().getText();
-            String id = view.getIdAdmin1().getText();
+            int id = Integer.parseInt(view.getIdAdmin1().getText());
             if (name.equalsIgnoreCase("") || username.equalsIgnoreCase("") || password.equalsIgnoreCase("")) {
                 JOptionPane.showMessageDialog(null, "Data tidak boleh kosong");
             } else {
@@ -87,7 +87,7 @@ public class c_admin1 {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            String id = view.getIdAdmin1().getText();
+            int id = Integer.parseInt(view.getIdAdmin1().getText());
             try {
                 model.hapusData(id);
                 view.setTabel(view.getTable_users(), model.tableAdmin1());
