@@ -31,8 +31,6 @@ public class v_Gudang extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.g1 = g1;
         this.g2 = g2;
-//        g1 = new gudang1();
-//        g2 = new gudang2();
         
         panelGudang.setLayout(layout);
         panelGudang.add(this.g1);

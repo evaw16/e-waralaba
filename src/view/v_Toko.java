@@ -20,9 +20,10 @@ import model.m_login;
 public class v_Toko extends javax.swing.JFrame {
 
     GridBagLayout layout = new GridBagLayout();
-
     toko1 t1;
     toko2 t2;
+    public int id;
+    int temp;
 
     public v_Toko(toko1 t1, toko2 t2) {
         initComponents();
@@ -48,6 +49,7 @@ public class v_Toko extends javax.swing.JFrame {
                 dispose();
             }
         });
+        System.out.println(id+""+temp);
     }
 
     private void setColor(JPanel panel) {
@@ -57,9 +59,16 @@ public class v_Toko extends javax.swing.JFrame {
     private void resetColor(JPanel panel) {
         panel.setBackground(new Color(247, 176, 255));
     }
-    public void setNama(String user){
+
+    public void setNama(String user) {
         nama.setText(user);
     }
+
+    public int simpanId(int id) {
+        temp = id;
+        return temp;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -248,7 +257,7 @@ public class v_Toko extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new v_Toko(t1,t2).setVisible(true);
+                new v_Toko(t1, t2).setVisible(true);
             }
         });
     }

@@ -78,7 +78,12 @@ public class c_gudang2 {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try {
+                int id_barangtoko = Integer.parseInt(view.getId_barangtoko().getText());
+                int jumlah = Integer.parseInt(view.getJumlah_field().getText());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

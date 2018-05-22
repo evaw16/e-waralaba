@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -48,7 +50,13 @@ public class toko1 extends javax.swing.JPanel {
         return jumlah_terjual;
     }
 
-    public JDateChooser getTanggal() {
+    public JDateChooser Tanggal() {
+        tanggal.setDateFormatString("yyyy-MM-dd");
+        return this.tanggal;
+    }
+
+    public String getTanggal(JDateChooser a) {
+        String tanggal = ((JTextField) a.getDateEditor().getUiComponent()).getText();
         return tanggal;
     }
 
@@ -60,21 +68,22 @@ public class toko1 extends javax.swing.JPanel {
         this.ddToko.addItem(ddToko);
     }
 
-//    private void dropDown(){
-//        try {
-//       String sql = "select b.nama_barang from tb_penjualan t join barang b on t.kode_barang = b.kode_barang";
-//            String sql = "select * from barang order by nama_barang";
-//            statement = connection.prepareStatement(sql);
-//            resultSet = statement.executeQuery(sql);
-//            
-//            while(resultSet.next()){
-//                String barang = resultSet.getString("barang.nama_barang");
-//                ddToko.addItem(barang);
-//            }
-//        } catch (Exception e){
-//            e.getMessage();
-//        }
-//    }
+    public JComboBox<String> getDdToko() {
+        return ddToko;
+    }
+
+    public JTable getTable_penjualan() {
+        return table_penjualan;
+    }
+
+    public void setTabelToko1(DefaultTableModel tabel) {
+        this.table_penjualan.setModel(tabel);
+    }
+
+    public void setTabel(JTable t, DefaultTableModel tabel) {
+        t.setModel(tabel);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +97,7 @@ public class toko1 extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jumlah_terjual = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_penjualan = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         btnSimpan = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
@@ -98,66 +107,74 @@ public class toko1 extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         ddToko = new javax.swing.JComboBox<>();
         tanggal = new com.toedter.calendar.JDateChooser();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(690, 530));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Tanggal");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jLabel2.setText("Barang");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jumlah_terjual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jumlah_terjualActionPerformed(evt);
             }
         });
-        add(jumlah_terjual, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 110, -1));
+        add(jumlah_terjual, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 110, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_penjualan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tanggal", "Kode Barang", "Nama Barang", "Jumlah Terjual"
+                "ID", "Kode Barang", "Tanggal", "Jumlah Terjual"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_penjualan);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 77, 410, 470));
 
         jLabel3.setText("Jumlah Terjual");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSimpan.png"))); // NOI18N
         btnSimpan.setBorderPainted(false);
         btnSimpan.setContentAreaFilled(false);
-        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 130, -1));
+        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 130, -1));
 
         btnUbah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUbah.png"))); // NOI18N
         btnUbah.setBorderPainted(false);
         btnUbah.setContentAreaFilled(false);
-        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 130, -1));
+        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 130, -1));
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnReset.png"))); // NOI18N
         btnReset.setToolTipText("");
         btnReset.setBorderPainted(false);
         btnReset.setContentAreaFilled(false);
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 130, -1));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 130, -1));
 
         btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHapus.png"))); // NOI18N
         btnHapus.setBorderPainted(false);
         btnHapus.setContentAreaFilled(false);
-        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 130, -1));
+        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 130, -1));
         add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 170, -1));
 
         jLabel4.setText("Pencarian");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
 
-        add(ddToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 130, -1));
-        add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 80, 130, -1));
+        add(ddToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 130, -1));
+
+        tanggal.setDateFormatString("yyyy-MM-dd");
+        add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 130, -1));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 130, -1));
+
+        jLabel5.setText("Id");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jumlah_terjualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlah_terjualActionPerformed
@@ -175,10 +192,12 @@ public class toko1 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jumlah_terjual;
+    private javax.swing.JTable table_penjualan;
     private com.toedter.calendar.JDateChooser tanggal;
     // End of variables declaration//GEN-END:variables
 }

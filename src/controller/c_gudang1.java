@@ -28,7 +28,7 @@ public class c_gudang1 {
         gudang.getBtnUbah().addActionListener(new ButtonUbah());
         gudang.getBtnHapus().addActionListener(new ButtonHapus());//bisa
         gudang.getBtnReset().addActionListener(new ButtonReset());//bisa
-        gudang.setTabel(gudang.getTable_barang(),model.tableGudang1());
+        gudang.setTabel(gudang.getTable_barang(), model.tableGudang1());
 
     }
 
@@ -58,7 +58,7 @@ public class c_gudang1 {
             int kodeBarang = Integer.parseInt(gudang.getKode_barang().getText());
             try {
                 model.hapusData(kodeBarang);
-                gudang.setTabel(gudang.getTable_barang(),model.tableGudang1());
+                gudang.setTabel(gudang.getTable_barang(), model.tableGudang1());
                 clear();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -74,13 +74,12 @@ public class c_gudang1 {
         @Override
         public void actionPerformed(ActionEvent ae) {
             String namaBarang = gudang.getNama_barang().getText();
-            int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText()); 
+            int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText());
             int hargaBarang = Integer.parseInt(gudang.getHarga_barang().getText());
             int kodeBarang = Integer.parseInt(gudang.getKode_barang().getText());
-
             try {
-                model.updateData(namaBarang, jumlahStok, hargaBarang,kodeBarang);
-                gudang.setTabel(gudang.getTable_barang(),model.tableGudang1());
+                model.updateData(namaBarang, jumlahStok, hargaBarang, kodeBarang);
+                gudang.setTabel(gudang.getTable_barang(), model.tableGudang1());
                 clear();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -91,23 +90,19 @@ public class c_gudang1 {
     private class ButtonSimpan implements ActionListener {
 
         public ButtonSimpan() {
-//            System.out.println("qwertyuio");
         }
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-//            System.out.println("asdfghjkl;");
-//            int kodeBarang = Integer.parseInt(gudang.getKode_barang().getText().toString());
+        public void actionPerformed(ActionEvent ae) {
             String namaBarang = gudang.getNama_barang().getText();
-            int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText()); 
+            int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText());
             int hargaBarang = Integer.parseInt(gudang.getHarga_barang().getText());
-//            System.out.println(namaBarang + " " + jumlahStok + " " + hargaBarang);
             try {
                 model.simpanData(namaBarang, jumlahStok, hargaBarang);
-                gudang.setTabel(gudang.getTable_barang(),model.tableGudang1());
+                gudang.setTabel(gudang.getTable_barang(), model.tableGudang1());
                 clear();
-            } catch (Exception le) {
-//                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
 
         }

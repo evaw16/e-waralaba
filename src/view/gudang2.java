@@ -29,6 +29,7 @@ public class gudang2 extends javax.swing.JPanel {
     ResultSet resultSet;
     public static int id[];
     public static int kode_barang[];
+    m_gudang2 model;
 
     public gudang2() {
         initComponents();
@@ -94,6 +95,20 @@ public class gudang2 extends javax.swing.JPanel {
 
     public void setTabel(JTable t, DefaultTableModel tabel) {
         t.setModel(tabel);
+    }
+
+    public void comboUser() {
+        HashMap<String, Integer> map = model.comboUsers();
+        for (String s : map.keySet()) {
+            setDdUsers(s);
+        }
+    }
+
+    public void comboBarang() {
+        HashMap<String, Integer> map = model.comboBarang();
+        for (String s : map.keySet()) {
+            setDdBarang(s);
+        }
     }
 
     private void DropToko() {
@@ -164,6 +179,11 @@ public class gudang2 extends javax.swing.JPanel {
                 "Id", "Id Toko", "Id Barang", "Jumlah"
             }
         ));
+        table_gudang2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_gudang2MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_gudang2);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 400, 440));
@@ -246,8 +266,16 @@ public class gudang2 extends javax.swing.JPanel {
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void ddUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ddUsersActionPerformed
-        
+
     }//GEN-LAST:event_ddUsersActionPerformed
+
+    private void table_gudang2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_gudang2MouseClicked
+        int baris = table_gudang2.getSelectedRow();
+        id_barangtoko.setText(table_gudang2.getModel().getValueAt(baris, 0).toString());
+        ddUsers.addItem((table_gudang2.getModel().getValueAt(baris, 1).toString()));
+        ddBarang.addItem(table_gudang2.getModel().getValueAt(baris, 2).toString());
+        jumlah_field.setText(table_gudang2.getModel().getValueAt(baris, 3).toString());
+    }//GEN-LAST:event_table_gudang2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
