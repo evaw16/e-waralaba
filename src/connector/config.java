@@ -19,16 +19,11 @@ public class config {
     public static Connection Connection() {
 
         try {
-//            String username = "root";
-//            String password = "";
             String username = "postgres";
             String password = "brianrizqi";
             String database = "e-waralaba";
-//            String url = "jdbc:mysql://localhost/" + database;
-//            Class.forName("com.postgresql.jdbc.Driver");
             String url = "jdbc:postgresql://localhost:5432/"+database;
             connection = DriverManager.getConnection(url, username, password);
-//            Class.forName("org.postgresql.Driver");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("ERROR");

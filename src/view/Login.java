@@ -29,7 +29,7 @@ public class Login extends javax.swing.JFrame {
     Statement statement;
     ResultSet resultSet;
     public static int status[];
-    public static int id;
+//    public static int id;
     private String user;
     private String pass;
 

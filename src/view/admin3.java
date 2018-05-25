@@ -9,7 +9,11 @@ import connector.config;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
+import model.m_combogudang;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -33,38 +37,34 @@ public class admin3 extends javax.swing.JPanel {
 //        tampilBarang();
     }
 
-    private void tampilBarang() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Nama Toko");
-        model.addColumn("Nama Barang");
-        model.addColumn("Tanggal");
-        model.addColumn("Jumlah");
+    public JComboBox<String> getDdUsers() {
+        return ddUsers;
+    }
+
+    public void setDdUser(String ddUsers) {
+        this.ddUsers.addItem(ddUsers);
+    }
+
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    public HashMap<String, Integer> comboUsers() {
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
         try {
-            String sql = "SELECT\n" +
-"  `e-waralaba`.barang.nama_barang,\n" +
-"  `e-waralaba`.users.username,\n" +
-"  `e-waralaba`.tb_penjualan.jumlah_penjualan,\n" +
-"  `e-waralaba`.tb_penjualan.tanggal\n" +
-"FROM\n" +
-"  `e-waralaba`.users\n" +
-"  INNER JOIN `e-waralaba`.tb_barangtokoo ON `e-waralaba`.tb_barangtokoo.id = `e-waralaba`.users.id\n" +
-"  INNER JOIN `e-waralaba`.tb_penjualan ON `e-waralaba`.tb_penjualan.kode_barang =\n" +
-"    `e-waralaba`.tb_barangtokoo.kode_barang\n" +
-"  INNER JOIN `e-waralaba`.barang ON `e-waralaba`.tb_barangtokoo.kode_barang = `e-waralaba`.barang.kode_barang";
+            String sql = "select id,username from users where status = 3";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
+            m_combogudang m;
 
-            int no = 0;
             while (resultSet.next()) {
-                no++;
-                model.addRow(new Object[]{
-                    resultSet.getString("users.username"), resultSet.getString("barang.nama_barang"), resultSet.getString("tanggal"), resultSet.getString("jumlah_penjualan")
-                });
+                m = new m_combogudang(resultSet.getInt(1), resultSet.getString(2));
+                map.put(m.getUsername(), m.getId());
             }
-            table_toko.setModel(model);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("salah");
         }
+        return map;
     }
 
     /**
@@ -76,28 +76,13 @@ public class admin3 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table_toko = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        ddUsers = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(690, 530));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        table_toko.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nama Toko", "Nama Barang", "Tanggal", "Jumlah Terjual"
-            }
-        ));
-        jScrollPane1.setViewportView(table_toko);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 670, 330));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 170, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnChart.png"))); // NOI18N
         jButton1.setBorderPainted(false);
@@ -107,23 +92,27 @@ public class admin3 extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
 
-        jLabel1.setText("Pencarian");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+        ddUsers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(ddUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 140, -1));
+
+        jLabel2.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
+        jLabel2.setText("Pilih Toko");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            String sql = "SELECT\n" +
-"  `e-waralaba`.barang.nama_barang,\n" +
-"  `e-waralaba`.tb_penjualan.jumlah_penjualan\n" +
-"FROM\n" +
-"  `e-waralaba`.users\n" +
-"  INNER JOIN `e-waralaba`.tb_barangtokoo ON `e-waralaba`.tb_barangtokoo.id = `e-waralaba`.users.id\n" +
-"  INNER JOIN `e-waralaba`.tb_penjualan ON `e-waralaba`.tb_penjualan.kode_barang =\n" +
-"    `e-waralaba`.tb_barangtokoo.kode_barang\n" +
-"  INNER JOIN `e-waralaba`.barang ON `e-waralaba`.tb_barangtokoo.kode_barang = `e-waralaba`.barang.kode_barang";
+            String sql = "SELECT\n"
+                    + "  `e-waralaba`.barang.nama_barang,\n"
+                    + "  `e-waralaba`.tb_penjualan.jumlah_penjualan\n"
+                    + "FROM\n"
+                    + "  `e-waralaba`.users\n"
+                    + "  INNER JOIN `e-waralaba`.tb_barangtokoo ON `e-waralaba`.tb_barangtokoo.id = `e-waralaba`.users.id\n"
+                    + "  INNER JOIN `e-waralaba`.tb_penjualan ON `e-waralaba`.tb_penjualan.kode_barang =\n"
+                    + "    `e-waralaba`.tb_barangtokoo.kode_barang\n"
+                    + "  INNER JOIN `e-waralaba`.barang ON `e-waralaba`.tb_barangtokoo.kode_barang = `e-waralaba`.barang.kode_barang";
             JDBCCategoryDataset dataset = new JDBCCategoryDataset(config.connection, sql);
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
@@ -142,10 +131,8 @@ public class admin3 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ddUsers;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable table_toko;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

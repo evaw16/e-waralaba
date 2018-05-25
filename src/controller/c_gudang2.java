@@ -80,7 +80,13 @@ public class c_gudang2 {
         public void actionPerformed(ActionEvent ae) {
             try {
                 int id_barangtoko = Integer.parseInt(view.getId_barangtoko().getText());
+                HashMap<String, Integer> mapUser = model.comboUsers();
+                int id = Integer.parseInt(mapUser.get(view.getDdUsers().getSelectedItem().toString()).toString());
+                HashMap<String, Integer> mapBarang = model.comboBarang();
+                int kode_barang = Integer.parseInt(mapBarang.get(view.getDdBarang().getSelectedItem().toString()).toString());
                 int jumlah = Integer.parseInt(view.getJumlah_field().getText());
+                model.ubahData(id, kode_barang, jumlah, id_barangtoko);
+                view.setTabel(view.getTable_gudang2(), model.tableGudang1());
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -99,13 +105,17 @@ public class c_gudang2 {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-
+            int id_barangtoko = Integer.parseInt(view.getId_barangtoko().getText());
+            model.hapusData(id_barangtoko);
+            view.setTabel(view.getTable_gudang2(), model.tableGudang1());
+            clear();
         }
     }
 
     private void clear() {
         String clear = "";
         view.setJumlah_field(clear);
+        view.setId_barangtoko(clear);
     }
 
 }

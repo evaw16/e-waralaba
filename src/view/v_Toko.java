@@ -22,8 +22,7 @@ public class v_Toko extends javax.swing.JFrame {
     GridBagLayout layout = new GridBagLayout();
     toko1 t1;
     toko2 t2;
-    public int id;
-    int temp;
+//    public int id;
 
     public v_Toko(toko1 t1, toko2 t2) {
         initComponents();
@@ -32,6 +31,8 @@ public class v_Toko extends javax.swing.JFrame {
 
         this.t1 = t1;
         this.t2 = t2;
+//        this.id = id;
+//        System.out.println(id);
 
         panelToko.setLayout(layout);
         panelToko.add(t1);
@@ -49,7 +50,6 @@ public class v_Toko extends javax.swing.JFrame {
                 dispose();
             }
         });
-        System.out.println(id+""+temp);
     }
 
     private void setColor(JPanel panel) {
@@ -62,11 +62,6 @@ public class v_Toko extends javax.swing.JFrame {
 
     public void setNama(String user) {
         nama.setText(user);
-    }
-
-    public int simpanId(int id) {
-        temp = id;
-        return temp;
     }
 
     /**

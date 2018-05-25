@@ -41,8 +41,8 @@ public class gudang2 extends javax.swing.JPanel {
         return id_barangtoko;
     }
 
-    public void setId_barangtoko(JTextField id_barangtoko) {
-        this.id_barangtoko = id_barangtoko;
+    public void setId_barangtoko(String id_barangtoko) {
+        this.id_barangtoko.setText(id_barangtoko);
     }
 
     public JButton getBtnHapus() {
@@ -272,8 +272,6 @@ public class gudang2 extends javax.swing.JPanel {
     private void table_gudang2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_gudang2MouseClicked
         int baris = table_gudang2.getSelectedRow();
         id_barangtoko.setText(table_gudang2.getModel().getValueAt(baris, 0).toString());
-        ddUsers.addItem((table_gudang2.getModel().getValueAt(baris, 1).toString()));
-        ddBarang.addItem(table_gudang2.getModel().getValueAt(baris, 2).toString());
         jumlah_field.setText(table_gudang2.getModel().getValueAt(baris, 3).toString());
     }//GEN-LAST:event_table_gudang2MouseClicked
 

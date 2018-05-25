@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import model.m_toko1;
 import view.toko1;
+import view.v_Toko;
 
 /**
  *
@@ -31,6 +32,9 @@ public class c_toko1 {
         this.model = m;
         view.setVisible(true);
         view.getBtnSimpan().addActionListener(new ButtonSimpan());
+        view.getBtnUbah().addActionListener(new ButtonUbah());
+        view.getBtnReset().addActionListener(new ButtonReset());
+        view.getBtnHapus().addActionListener(new ButtonHapus());
         view.setTabel(view.getTable_penjualan(), model.tableToko1());
         comboBarang();
     }
@@ -39,6 +43,58 @@ public class c_toko1 {
         HashMap<String, Integer> map = model.comboBarang();
         for (String s : map.keySet()) {
             view.setDdToko(s);
+        }
+    }
+
+    private class ButtonHapus implements ActionListener {
+
+        public ButtonHapus() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            try {
+                int id_penjualan = Integer.parseInt(view.getId_penjualan().getText());
+                model.hapusData(id_penjualan);
+                view.setTabel(view.getTable_penjualan(), model.tableToko1());
+                clear();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private class ButtonReset implements ActionListener {
+
+        public ButtonReset() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            clear();
+        }
+    }
+
+    private class ButtonUbah implements ActionListener {
+
+        public ButtonUbah() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            try {
+                int id_penjualan = Integer.parseInt(view.getId_penjualan().getText());
+                String tanggal = view.getTanggal(view.Tanggal()).toString();
+                Date date = Date.valueOf(tanggal);
+                HashMap<String, Integer> mapBarang = model.comboBarang();
+                int kode_barang = Integer.parseInt(mapBarang.get(view.getDdToko().getSelectedItem().toString()).toString());
+                int jumlah_penjualan = Integer.parseInt(view.getJumlah_terjual().getText());
+                model.ubahData(kode_barang, date, jumlah_penjualan, id_penjualan);
+                view.setTabel(view.getTable_penjualan(), model.tableToko1());
+                clear();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -55,7 +111,6 @@ public class c_toko1 {
                 HashMap<String, Integer> mapBarang = model.comboBarang();
                 int kode_barang = Integer.parseInt(mapBarang.get(view.getDdToko().getSelectedItem().toString()).toString());
                 int jumlah_penjualan = Integer.parseInt(view.getJumlah_terjual().getText());
-                System.out.println(tanggal);
                 model.simpanData(kode_barang, date, jumlah_penjualan);
                 view.setTabel(view.getTable_penjualan(), model.tableToko1());
                 clear();
@@ -68,6 +123,7 @@ public class c_toko1 {
     private void clear() {
         String clear = "";
         view.setJumlah_terjual(clear);
+        view.setId_penjualan(clear);
     }
 
 }

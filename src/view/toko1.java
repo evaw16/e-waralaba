@@ -8,6 +8,7 @@ package view;
 import com.toedter.calendar.JDateChooser;
 import connector.config;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JButton;
@@ -28,6 +29,14 @@ public class toko1 extends javax.swing.JPanel {
 
     public toko1() {
         initComponents();
+    }
+
+    public JTextField getId_penjualan() {
+        return id_penjualan;
+    }
+
+    public void setId_penjualan(String id_penjualan) {
+        this.id_penjualan.setText(id_penjualan);
     }
 
     public JButton getBtnHapus() {
@@ -107,7 +116,7 @@ public class toko1 extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         ddToko = new javax.swing.JComboBox<>();
         tanggal = new com.toedter.calendar.JDateChooser();
-        jTextField1 = new javax.swing.JTextField();
+        id_penjualan = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -135,6 +144,11 @@ public class toko1 extends javax.swing.JPanel {
                 "ID", "Kode Barang", "Tanggal", "Jumlah Terjual"
             }
         ));
+        table_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_penjualanMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_penjualan);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 77, 410, 470));
@@ -171,7 +185,7 @@ public class toko1 extends javax.swing.JPanel {
 
         tanggal.setDateFormatString("yyyy-MM-dd");
         add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 130, -1));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 130, -1));
+        add(id_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 130, -1));
 
         jLabel5.setText("Id");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
@@ -181,6 +195,13 @@ public class toko1 extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jumlah_terjualActionPerformed
 
+    private void table_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_penjualanMouseClicked
+        int baris = table_penjualan.getSelectedRow();
+        id_penjualan.setText(table_penjualan.getModel().getValueAt(baris, 0).toString());
+        tanggal.setDate(Date.valueOf(table_penjualan.getModel().getValueAt(baris, 2).toString()));
+        jumlah_terjual.setText(table_penjualan.getModel().getValueAt(baris, 3).toString());
+    }//GEN-LAST:event_table_penjualanMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
@@ -188,13 +209,13 @@ public class toko1 extends javax.swing.JPanel {
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnUbah;
     private javax.swing.JComboBox<String> ddToko;
+    private javax.swing.JTextField id_penjualan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jumlah_terjual;
     private javax.swing.JTable table_penjualan;

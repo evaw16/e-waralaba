@@ -48,26 +48,27 @@ public class m_gudang2 {
         }
     }
 
-    private void ubahData(String id, String kode_barang, String jumlah, String id_barangtoko) {
+    public void ubahData(int id, int kode_barang, int jumlah, int id_barangtoko) {
         try {
-            String sql = "update tb_barangtokoo set id = ? , kode_barang = ? , jumlah = ? where id = ?";
+            String sql = "update tb_barangtokoo set id = ? , kode_barang = ? , jumlah = ? where id_barangtoko = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, id);
-            preparedStatement.setString(2, kode_barang);
-            preparedStatement.setString(3, jumlah);
-            preparedStatement.setString(4, id);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, kode_barang);
+            preparedStatement.setInt(3, jumlah);
+            preparedStatement.setInt(4, id_barangtoko);
             preparedStatement.executeUpdate();
+            System.out.println("asd");
         } catch (Exception e) {
             e.getMessage();
         }
 
     }
 
-    private void hapusData(String id) {
+    public void hapusData(int id_barangtoko) {
         try {
-            String sql = "delete from tb_barangtokoo where id = ?";
+            String sql = "delete from tb_barangtokoo where id_barangtoko = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, id);
+            preparedStatement.setInt(1, id_barangtoko);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.getMessage();

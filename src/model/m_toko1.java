@@ -24,8 +24,10 @@ public class m_toko1 {
     Statement statement;
     ResultSet resultSet;
     PreparedStatement preparedStatement;
+    public int id;
 
-    public m_toko1() {
+    public m_toko1(int id) {
+        this.id = id;
         try {
             connection = config.Connection();
             statement = connection.createStatement();
@@ -42,35 +44,46 @@ public class m_toko1 {
             preparedStatement.setObject(2, tanggal);
             preparedStatement.setInt(3, jumlah_penjualan);
             preparedStatement.executeUpdate();
+//            System.out.println(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void ubahData(int barang_toko, Date tanggal, int jumlah_penjualan, int id_penjualan) {
+    public void ubahData(int barang_toko, Date tanggal, int jumlah_penjualan,int id_penjualan) {
         try {
-
+            String sql = "update tb_penjualan set id_penjualan = ? , tanggal_penjualan = ? , jumlah_penjualan = ? where id_penjualan = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, barang_toko);
+            preparedStatement.setObject(2, tanggal);
+            preparedStatement.setInt(3, jumlah_penjualan);
+            preparedStatement.setInt(1, id_penjualan);
+            preparedStatement.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println(barang_toko+"-"+id_penjualan);
         }
     }
 
     public void hapusData(int id_penjualan) {
         try {
-
+            String sql = "delete from tb_penjualan where id_penjualan = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id_penjualan);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("b");
         }
     }
 
     public HashMap<String, Integer> comboBarang() {
         HashMap<String, Integer> map = new HashMap<String, Integer>();
         try {
-            String sql = "select tb.id_barangtoko,b.nama_barang from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang";
+            String sql = "select tb.id_barangtoko,b.nama_barang from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang where tb.id ="+id;
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             m_combogudang m;
-
+            System.out.println(id);
             while (resultSet.next()) {
                 m = new m_combogudang(resultSet.getInt(1), resultSet.getString(2));
                 map.put(m.getUsername(), m.getId());
@@ -88,7 +101,7 @@ public class m_toko1 {
         model.addColumn("Tanggal");
         model.addColumn("Jumlah Penjualan");
         try {
-            String sql = "select * from tb_penjualan p join tb_barangtokoo b on p.id_penjualan = b.id_barangtoko";
+            String sql = "select * from tb_penjualan p join tb_barangtokoo b on p.id_penjualan = b.id_barangtoko where id ="+id;
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 
