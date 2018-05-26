@@ -44,7 +44,6 @@ public class m_toko1 {
             preparedStatement.setObject(2, tanggal);
             preparedStatement.setInt(3, jumlah_penjualan);
             preparedStatement.executeUpdate();
-//            System.out.println(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -57,11 +56,10 @@ public class m_toko1 {
             preparedStatement.setInt(1, barang_toko);
             preparedStatement.setObject(2, tanggal);
             preparedStatement.setInt(3, jumlah_penjualan);
-            preparedStatement.setInt(1, id_penjualan);
+            preparedStatement.setInt(4, id_penjualan);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println(barang_toko+"-"+id_penjualan);
         }
     }
 
@@ -70,9 +68,10 @@ public class m_toko1 {
             String sql = "delete from tb_penjualan where id_penjualan = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id_penjualan);
+            preparedStatement.executeUpdate();
+            System.out.println(id_penjualan);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("b");
         }
     }
 

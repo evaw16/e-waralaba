@@ -123,6 +123,7 @@ public class c_toko1 {
     private void clear() {
         String clear = "";
         view.setJumlah_terjual(clear);
+        view.Tanggal().setDate(null);
         view.setId_penjualan(clear);
     }
 

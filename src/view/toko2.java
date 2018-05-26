@@ -23,19 +23,23 @@ public class toko2 extends javax.swing.JPanel {
     Connection connection = config.Connection();
     Statement statement;
     ResultSet resultSet;
+    public int id_toko2;
 
-    public toko2() {
+    public toko2(int id) {
         initComponents();
-        tampilBarang();
+        this.id_toko2 = id;
+        tampilBarang(id_toko2);
     }
-    private void tampilBarang() {
+
+    public void tampilBarang(int id) {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Kode Barang");
         model.addColumn("Nama Barang");
         model.addColumn("Jumlah Stok");
         model.addColumn("Harga");
         try {
-            String sql = "select * from barang";
+            String sql = "select * from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang where tb.id =" + id_toko2;
+            System.out.println(id_toko2);
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 
@@ -43,7 +47,7 @@ public class toko2 extends javax.swing.JPanel {
             while (resultSet.next()) {
                 no++;
                 model.addRow(new Object[]{
-                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah_stok"), resultSet.getString("harga")
+                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah"), resultSet.getString("harga")
                 });
             }
             table_barang.setModel(model);

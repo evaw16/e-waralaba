@@ -82,15 +82,13 @@ public class c_login {
                         case 3:
                             login.dispose();
                             toko1 t1 = new toko1();
-                            toko2 t2 = new toko2();
+                            toko2 t2 = new toko2(status [0]);
                             v_Toko toko = new v_Toko(t1, t2);
                             toko.setVisible(true);
                             m_toko1 mt1 = new m_toko1(status[0]);
                             c_toko1 ct1 = new c_toko1(t1, mt1);
                             t1.setVisible(true);
                             t2.setVisible(false);
-//                            toko.id = status[0];
-//                            System.out.println("id toko"+toko.id);
                             toko.setNama(model.getUsername(status[0]));
                             login = null;
                             break;
