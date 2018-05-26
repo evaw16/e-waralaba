@@ -35,6 +35,7 @@ public class admin3 extends javax.swing.JPanel {
     public admin3() {
         initComponents();
 //        tampilBarang();
+        comboUser();
     }
 
     public JComboBox<String> getDdUsers() {
@@ -47,6 +48,13 @@ public class admin3 extends javax.swing.JPanel {
 
     public JButton getjButton1() {
         return jButton1;
+    }
+
+    public void comboUser() {
+        HashMap<String, Integer> map = comboUsers();
+        for (String s : map.keySet()) {
+            setDdUser(s);
+        }
     }
 
     public HashMap<String, Integer> comboUsers() {
@@ -92,27 +100,22 @@ public class admin3 extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
 
-        ddUsers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(ddUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 140, -1));
+        add(ddUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 140, -1));
 
         jLabel2.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
         jLabel2.setText("Pilih Toko");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        HashMap<String, Integer> mapUser = comboUsers();
+        int id = Integer.parseInt(mapUser.get(getDdUsers().getSelectedItem().toString()).toString());
         try {
-            String sql = "SELECT\n"
-                    + "  `e-waralaba`.barang.nama_barang,\n"
-                    + "  `e-waralaba`.tb_penjualan.jumlah_penjualan\n"
-                    + "FROM\n"
-                    + "  `e-waralaba`.users\n"
-                    + "  INNER JOIN `e-waralaba`.tb_barangtokoo ON `e-waralaba`.tb_barangtokoo.id = `e-waralaba`.users.id\n"
-                    + "  INNER JOIN `e-waralaba`.tb_penjualan ON `e-waralaba`.tb_penjualan.kode_barang =\n"
-                    + "    `e-waralaba`.tb_barangtokoo.kode_barang\n"
-                    + "  INNER JOIN `e-waralaba`.barang ON `e-waralaba`.tb_barangtokoo.kode_barang = `e-waralaba`.barang.kode_barang";
+            String sql = "select ba.nama_barang, p.jumlah_penjualan from tb_penjualan p join\n"
+                    + "tb_barangtokoo b on p.id_penjualan = b.id_barangtoko\n"
+                    + "join barang ba on b.kode_barang = ba.kode_barang where b.id = " + id;
             JDBCCategoryDataset dataset = new JDBCCategoryDataset(config.connection, sql);
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
