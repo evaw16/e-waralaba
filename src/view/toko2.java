@@ -85,11 +85,42 @@ public class toko2 extends javax.swing.JPanel {
         jScrollPane1.setViewportView(table_barang);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 670, 440));
+
+        pencarian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pencarianKeyPressed(evt);
+            }
+        });
         add(pencarian, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 200, -1));
 
         jLabel1.setText("Pencarian");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pencarianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianKeyPressed
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Kode Barang");
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah Stok");
+        model.addColumn("Harga");
+        try {
+            String sql = "select * from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang where tb.id ="+id_toko2+" and nama_barang like '%" + pencarian.getText() + "%'";
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            
+            int no = 0;
+            while (resultSet.next()) {
+                no++;
+                model.addRow(new Object[]{
+                    resultSet.getInt("kode_barang"), resultSet.getString("nama_barang"), resultSet.getInt("jumlah_stok"), resultSet.getInt("harga")
+                });
+            }
+            table_barang.setModel(model);
+        } catch (Exception e) {
+            System.out.println("asdkljlasdjlkasdj");
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_pencarianKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

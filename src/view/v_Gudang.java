@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
+import model.m_gudang1;
 import model.m_login;
 
 /**
@@ -19,26 +20,28 @@ import model.m_login;
  * @author Brian R
  */
 public class v_Gudang extends javax.swing.JFrame {
-    
+
     GridBagLayout layout = new GridBagLayout();
-    
+
     gudang1 g1 = new gudang1();
     gudang2 g2 = new gudang2();
-    
+    m_gudang1 mg1 = new m_gudang1();
+    c_gudang1 cg1 = new c_gudang1(mg1, g1);
+
     public v_Gudang(gudang1 g1, gudang2 g2) {
         initComponents();
         btnLogout.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
         this.g1 = g1;
         this.g2 = g2;
-        
+
         panelGudang.setLayout(layout);
         panelGudang.add(this.g1);
         panelGudang.add(this.g2);
-        
+
         this.g1.setVisible(true);
         this.g2.setVisible(false);
-        
+
         btnLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -49,12 +52,15 @@ public class v_Gudang extends javax.swing.JFrame {
             }
         });
     }
-    private void setColor(JPanel panel){
-        panel.setBackground(new Color (245,87,108));
+
+    private void setColor(JPanel panel) {
+        panel.setBackground(new Color(245, 87, 108));
     }
-    private void resetColor(JPanel panel){
-        panel.setBackground(new Color(247,176,255));
+
+    private void resetColor(JPanel panel) {
+        panel.setBackground(new Color(247, 176, 255));
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -210,6 +216,7 @@ public class v_Gudang extends javax.swing.JFrame {
         resetColor(gudangStok);
         g1.setVisible(true);
         g2.setVisible(false);
+        g1.setTabel(g1.getTable_barang(), mg1.tableGudang1());
     }//GEN-LAST:event_gudangBarangMousePressed
 
     private void gudangStokMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gudangStokMousePressed
@@ -257,7 +264,7 @@ public class v_Gudang extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new v_Gudang(g1,g2).setVisible(true);
+                new v_Gudang(g1, g2).setVisible(true);
             }
         });
     }

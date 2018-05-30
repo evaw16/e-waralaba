@@ -31,11 +31,16 @@ public class admin3 extends javax.swing.JPanel {
     Connection connection = config.Connection();
     Statement statement;
     ResultSet resultSet;
+    private int id_user;
 
     public admin3() {
         initComponents();
 //        tampilBarang();
-        comboUser();
+//        comboUser();
+//        HashMap<String, Integer> mapUser = comboUsers();
+//        id_user = Integer.parseInt(mapUser.get(getDdUsers().getSelectedItem().toString()).toString());
+//        System.out.println(id_user);
+//        comboBarang();
     }
 
     public JComboBox<String> getDdUsers() {
@@ -46,34 +51,68 @@ public class admin3 extends javax.swing.JPanel {
         this.ddUsers.addItem(ddUsers);
     }
 
+    public JComboBox<String> getDdBarang() {
+        return ddBarang;
+    }
+
+    public void setDdBarang(String ddBarang) {
+        this.ddBarang.addItem(ddBarang);
+    }
+
     public JButton getjButton1() {
         return jButton1;
     }
-
-    public void comboUser() {
-        HashMap<String, Integer> map = comboUsers();
-        for (String s : map.keySet()) {
-            setDdUser(s);
-        }
-    }
-
-    public HashMap<String, Integer> comboUsers() {
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
-        try {
-            String sql = "select id,username from users where status = 3";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-            m_combogudang m;
-
-            while (resultSet.next()) {
-                m = new m_combogudang(resultSet.getInt(1), resultSet.getString(2));
-                map.put(m.getUsername(), m.getId());
-            }
-        } catch (Exception e) {
-            System.out.println("salah");
-        }
-        return map;
-    }
+//
+//    public void comboUser() {
+//        HashMap<String, Integer> map = comboUsers();
+//        for (String s : map.keySet()) {
+//            setDdUser(s);
+//        }
+//    }
+//
+//    public HashMap<String, Integer> comboUsers() {
+//        HashMap<String, Integer> map = new HashMap<String, Integer>();
+//        try {
+//            String sql = "select id,username from users where status = 3";
+//            statement = connection.createStatement();
+//            resultSet = statement.executeQuery(sql);
+//            m_combogudang m;
+//
+//            while (resultSet.next()) {
+//                m = new m_combogudang(resultSet.getInt(1), resultSet.getString(2));
+//                map.put(m.getUsername(), m.getId());
+//            }
+//        } catch (Exception e) {
+//            System.out.println("salah");
+//        }
+//        return map;
+//    }
+//
+//    public void comboBarang() {
+//        HashMap<String, Integer> map = comboBarangg();
+//        for (String s : map.keySet()) {
+//            setDdBarang(s);
+//        }
+//    }
+//
+//    public HashMap<String, Integer> comboBarangg() {
+//        HashMap<String, Integer> map = new HashMap<String, Integer>();
+//        try {
+//            String sql = "select b.kode_barang,b.nama_barang from barang b join tb_barangtokoo tb"
+//                    + "on b.kode_barang = tb.kode_barang where tb.id = " + id_user;
+//            statement = connection.createStatement();
+//            resultSet = statement.executeQuery(sql);
+//            m_combogudang m;
+//
+//            while (resultSet.next()) {
+//                m = new m_combogudang(resultSet.getInt(1), resultSet.getString(2));
+//                map.put(m.getUsername(), m.getId());
+//            }
+//        } catch (Exception e) {
+//            System.out.println("salah");
+//        }
+//        return map;
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +126,8 @@ public class admin3 extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         ddUsers = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        ddBarang = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(690, 530));
@@ -100,42 +141,51 @@ public class admin3 extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
 
-        add(ddUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 140, -1));
+        add(ddUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 140, -1));
 
         jLabel2.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
         jLabel2.setText("Pilih Toko");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
+        jLabel1.setText("PILIH BARANG");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
+
+        add(ddBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 140, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        HashMap<String, Integer> mapUser = comboUsers();
-        int id = Integer.parseInt(mapUser.get(getDdUsers().getSelectedItem().toString()).toString());
-        try {
-            String sql = "select ba.nama_barang, p.jumlah_penjualan from tb_penjualan p join\n"
-                    + "tb_barangtokoo b on p.id_penjualan = b.id_barangtoko\n"
-                    + "join barang ba on b.kode_barang = ba.kode_barang where b.id = " + id;
-            JDBCCategoryDataset dataset = new JDBCCategoryDataset(config.connection, sql);
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-            JFreeChart chart = ChartFactory.createLineChart("Chart", "Nama Barang", "Jumlah Penjualan", dataset, PlotOrientation.VERTICAL, false, true, true);
-            BarRenderer render = null;
-            CategoryPlot plot = null;
-            render = new BarRenderer();
-            ChartFrame frame = new ChartFrame("Chart", chart);
-            frame.setVisible(true);
-            frame.setSize(400, 650);
-            frame.setLocationRelativeTo(null);
-        } catch (Exception e) {
-            e.getMessage();
-        }
+//        HashMap<String, Integer> mapUser = comboUsers();
+//        int id = Integer.parseInt(mapUser.get(getDdUsers().getSelectedItem().toString()).toString());
+//        try {
+//            String sql = "select ba.nama_barang, sum(p.jumlah_penjualan) from tb_penjualan p join\n"
+//                    + "tb_barangtokoo b on p.id_penjualan = b.id_barangtoko\n"
+//                    + "join barang ba on b.kode_barang = ba.kode_barang where b.id = " + id + ""
+//                    + "group by ba.nama_barang";
+//            JDBCCategoryDataset dataset = new JDBCCategoryDataset(config.connection, sql);
+//            statement = connection.createStatement();
+//            resultSet = statement.executeQuery(sql);
+//            JFreeChart chart = ChartFactory.createLineChart("Chart", "Nama Barang", "Jumlah Penjualan", dataset, PlotOrientation.VERTICAL, false, true, true);
+//            BarRenderer render = null;
+//            CategoryPlot plot = null;
+//            render = new BarRenderer();
+//            ChartFrame frame = new ChartFrame("Chart", chart);
+//            frame.setVisible(true);
+//            frame.setSize(400, 650);
+//            frame.setLocationRelativeTo(null);
+//        } catch (Exception e) {
+//            e.getMessage();
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ddBarang;
     private javax.swing.JComboBox<String> ddUsers;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

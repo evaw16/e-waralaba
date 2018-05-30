@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Date;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,19 +38,44 @@ public class m_toko1 {
     }
 
     public void simpanData(int barang_toko, Date tanggal, int jumlah_penjualan) {
+        int result = 0;
         try {
-            String sql = "INSERT INTO tb_penjualan (id_penjualan,tanggal_penjualan,jumlah_penjualan) values(?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, barang_toko);
-            preparedStatement.setObject(2, tanggal);
-            preparedStatement.setInt(3, jumlah_penjualan);
-            preparedStatement.executeUpdate();
+            String sql = "select * from tb_barangtokoo where id = ? ";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getInt("jumlah");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        if (result >= jumlah_penjualan) {
+            int total = result - jumlah_penjualan;
+            try{
+                String sql = "update tb_barangtokoo set (jumlah) = (?) where id= ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, total);
+                preparedStatement.setInt(2, id);
+                preparedStatement.executeUpdate();
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+            try {
+                String sql = "INSERT INTO tb_penjualan (id_penjualan,tanggal_penjualan,jumlah_penjualan) values(?,?,?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, barang_toko);
+                preparedStatement.setObject(2, tanggal);
+                preparedStatement.setInt(3, jumlah_penjualan);
+                preparedStatement.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else{
+            JOptionPane.showMessageDialog(null, "Jumlah Stok kosong");
+        }
     }
 
-    public void ubahData(int barang_toko, Date tanggal, int jumlah_penjualan,int id_penjualan) {
+    public void ubahData(int barang_toko, Date tanggal, int jumlah_penjualan, int id_penjualan) {
         try {
             String sql = "update tb_penjualan set id_penjualan = ? , tanggal_penjualan = ? , jumlah_penjualan = ? where id_penjualan = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -78,11 +104,10 @@ public class m_toko1 {
     public HashMap<String, Integer> comboBarang() {
         HashMap<String, Integer> map = new HashMap<String, Integer>();
         try {
-            String sql = "select tb.id_barangtoko,b.nama_barang from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang where tb.id ="+id;
+            String sql = "select tb.id_barangtoko,b.nama_barang from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang where tb.id =" + id;
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             m_combogudang m;
-            System.out.println(id);
             while (resultSet.next()) {
                 m = new m_combogudang(resultSet.getInt(1), resultSet.getString(2));
                 map.put(m.getUsername(), m.getId());
@@ -100,7 +125,7 @@ public class m_toko1 {
         model.addColumn("Tanggal");
         model.addColumn("Jumlah Penjualan");
         try {
-            String sql = "select * from tb_penjualan p join tb_barangtokoo b on p.id_penjualan = b.id_barangtoko where id ="+id;
+            String sql = "select * from tb_penjualan p join tb_barangtokoo b on p.id_penjualan = b.id_barangtoko where id =" + id;
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 

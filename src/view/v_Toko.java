@@ -22,10 +22,12 @@ public class v_Toko extends javax.swing.JFrame {
     GridBagLayout layout = new GridBagLayout();
     toko1 t1;
     toko2 t2;
+    int id;
 //    public int id;
 
-    public v_Toko(toko1 t1, toko2 t2) {
+    public v_Toko(toko1 t1, toko2 t2,int id) {
         initComponents();
+        this.id = id;
         this.setLocationRelativeTo(null);
         btnLogout.setBackground(new Color(0, 0, 0, 0));
 
@@ -212,6 +214,7 @@ public class v_Toko extends javax.swing.JFrame {
         resetColor(tokoStok);
         t1.setVisible(false);
         t2.setVisible(true);
+        t2.tampilBarang(id);
     }//GEN-LAST:event_tokoBarangMousePressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -252,7 +255,7 @@ public class v_Toko extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new v_Toko(t1, t2).setVisible(true);
+                new v_Toko(t1, t2,id).setVisible(true);
             }
         });
     }

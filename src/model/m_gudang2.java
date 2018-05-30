@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,15 +37,40 @@ public class m_gudang2 {
     }
 
     public void simpanData(int id, int kode_barang, int jumlah) {
+        int result = 0;
         try {
-            String sql = "INSERT INTO tb_barangtokoo (id,kode_barang,jumlah) values(?,?,?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
-            preparedStatement.setInt(2, kode_barang);
-            preparedStatement.setInt(3, jumlah);
-            preparedStatement.executeUpdate();
+            String sql = "select * from barang where kode_barang = ?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, kode_barang);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getInt("jumlah_stok");
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
+        }
+        if (result >= jumlah) {
+            int total = result - jumlah;
+            try {
+                String sql = "update barang set (jumlah_stok) = (?) where kode_barang= ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, total);
+                preparedStatement.setInt(2, kode_barang);
+                preparedStatement.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            try {
+                String sql = "INSERT INTO tb_barangtokoo (id,kode_barang,jumlah) values(?,?,?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, id);
+                preparedStatement.setInt(2, kode_barang);
+                preparedStatement.setInt(3, jumlah);
+                preparedStatement.executeUpdate();
+            } catch (Exception e) {
+                e.getMessage();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Jumlah stok kurang");
         }
     }
 
@@ -57,7 +83,6 @@ public class m_gudang2 {
             preparedStatement.setInt(3, jumlah);
             preparedStatement.setInt(4, id_barangtoko);
             preparedStatement.executeUpdate();
-            System.out.println("asd");
         } catch (Exception e) {
             e.getMessage();
         }
@@ -125,11 +150,11 @@ public class m_gudang2 {
             String sql = "select kode_barang,nama_barang from barang";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
-            m_combogudang m;
+            m_combobarang m;
 
             while (resultSet.next()) {
-                m = new m_combogudang(resultSet.getInt(1), resultSet.getString(2));
-                map.put(m.getUsername(), m.getId());
+                m = new m_combobarang(resultSet.getInt(1), resultSet.getString(2));
+                map.put(m.getNama_barang(), m.getKode_barang());
             }
         } catch (Exception e) {
             System.out.println("salah");

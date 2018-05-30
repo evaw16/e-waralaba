@@ -295,7 +295,7 @@ public class gudang1 extends javax.swing.JPanel {
         model.addColumn("Jumlah Stok");
         model.addColumn("Harga");
         try {
-            String sql = "select * from barang where kode_barang like '%" + cari_barang.getText() + "%' or nama_barang like '%" + cari_barang.getText() + "%' or jumlah_stok like '%" + cari_barang.getText() + "%' or harga like '%" + cari_barang.getText() + "%'";
+            String sql = "select * from barang where nama_barang like '%" + cari_barang.getText() + "%'";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 
@@ -303,11 +303,12 @@ public class gudang1 extends javax.swing.JPanel {
             while (resultSet.next()) {
                 no++;
                 model.addRow(new Object[]{
-                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah_stok"), resultSet.getString("harga")
+                    resultSet.getInt("kode_barang"), resultSet.getString("nama_barang"), resultSet.getInt("jumlah_stok"), resultSet.getInt("harga")
                 });
             }
             table_barang.setModel(model);
         } catch (Exception e) {
+            System.out.println("asdkljlasdjlkasdj");
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_cari_barangKeyPressed
