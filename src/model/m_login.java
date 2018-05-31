@@ -21,7 +21,7 @@ import view.Login;
  *
  * @author Brian R
  */
-public class m_login {
+public class m_login extends config{
 
     Connection connection;
     Statement statement;
@@ -29,7 +29,7 @@ public class m_login {
 
     public m_login() {
         try {
-            connection = config.Connection();
+            connection = Connection();
             statement = connection.createStatement();
         } catch (Exception e) {
             System.out.println(e.getMessage());

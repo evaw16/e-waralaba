@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Brian R
  */
-public class m_toko1 {
+public class m_toko1 extends config{
 
     Connection connection;
     Statement statement;
@@ -30,7 +30,7 @@ public class m_toko1 {
     public m_toko1(int id) {
         this.id = id;
         try {
-            connection = config.Connection();
+            connection = Connection();
             statement = connection.createStatement();
         } catch (Exception e) {
             System.out.println(e.getMessage());

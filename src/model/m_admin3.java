@@ -23,7 +23,7 @@ import org.jfree.data.jdbc.JDBCCategoryDataset;
  *
  * @author Brian R
  */
-public class m_admin3 {
+public class m_admin3 extends config {
 
     Connection connection;
     Statement statement;
@@ -33,23 +33,22 @@ public class m_admin3 {
 
     public m_admin3() {
         try {
-            connection = config.Connection();
+            connection = Connection();
             statement = connection.createStatement();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void chart(int id) {
-        try {
-            String sql = "select ba.nama_barang, sum(p.jumlah_penjualan) from tb_penjualan p join\n"
-                    + "tb_barangtokoo b on p.id_penjualan = b.id_barangtoko\n"
-                    + "join barang ba on b.kode_barang = ba.kode_barang where b.id = " + id + ""
-                    + "group by ba.nama_barang";
-            JDBCCategoryDataset dataset = new JDBCCategoryDataset(config.connection, sql);
+    public void chart(int id, int kode_barang) {
+        try {   
+            String sql = "select date_part('month',p.tanggal_penjualan) ,sum(p.jumlah_penjualan) from tb_penjualan p join \n"
+                    + "tb_barangtokoo b on p.id_penjualan = b.id_barangtoko join barang ba \n"
+                    + "on b.kode_barang = ba.kode_barang where b.id = " + id + " and b.kode_barang = " + kode_barang + " group by date_part('month',p.tanggal_penjualan)";
+            JDBCCategoryDataset dataset = new JDBCCategoryDataset(connection, sql);
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
-            JFreeChart chart = ChartFactory.createLineChart("Chart", "Nama Barang", "Jumlah Penjualan", dataset, PlotOrientation.VERTICAL, false, true, true);
+            JFreeChart chart = ChartFactory.createBarChart("Chart", "Bulan", "Jumlah Penjualan", dataset, PlotOrientation.VERTICAL, false, true, true);
             BarRenderer render = null;
             CategoryPlot plot = null;
             render = new BarRenderer();

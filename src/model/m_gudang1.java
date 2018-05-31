@@ -19,7 +19,7 @@ import view.gudang1;
  *
  * @author Brian R
  */
-public class m_gudang1 {
+public class m_gudang1 extends config{
 
     Connection connection;
     Statement statement;
@@ -28,7 +28,7 @@ public class m_gudang1 {
 
     public m_gudang1() {
         try {
-            connection = config.Connection();
+            connection = Connection();
             statement = connection.createStatement();
         } catch (Exception e) {
             System.out.println(e.getMessage());

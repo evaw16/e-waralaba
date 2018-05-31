@@ -16,15 +16,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Brian R
  */
-public class m_admin1 {
+public class m_admin1 extends config{
 
-    Connection connection = config.Connection();
+    Connection connection;
     Statement statement;
     ResultSet resultSet;
 
     public m_admin1() {
         try {
-            connection = config.Connection();
+            connection = Connection();
             statement = connection.createStatement();
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -73,7 +73,7 @@ public class c_admin3 {
             int id = Integer.parseInt(mapUser.get(view.getDdUsers().getSelectedItem().toString()).toString());
             HashMap<String , Integer> mapBarang = model.comboBarangg(id);
             int kode_barang = Integer.parseInt(mapBarang.get(view.getDdBarang().getSelectedItem().toString()).toString());
-            model.chart(id);
+            model.chart(id,kode_barang);
         }
     }
 

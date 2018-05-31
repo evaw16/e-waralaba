@@ -10,12 +10,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
 import model.m_gudang2;
 
 /**
@@ -30,11 +33,12 @@ public class gudang2 extends javax.swing.JPanel {
     public static int id[];
     public static int kode_barang[];
     m_gudang2 model;
-
+    Vector vector = new Vector();
+    
     public gudang2() {
         initComponents();
-        DropToko();
-        DropBarang();
+//        DropToko();
+//        DropBarang();
     }
 
     public JTextField getId_barangtoko() {
@@ -198,6 +202,7 @@ public class gudang2 extends javax.swing.JPanel {
         jLabel1.setText("Pencarian");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
+        ddUsers.setEditable(true);
         ddUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ddUsersActionPerformed(evt);
@@ -205,6 +210,7 @@ public class gudang2 extends javax.swing.JPanel {
         });
         add(ddUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 100, -1));
 
+        ddBarang.setEditable(true);
         add(ddBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 100, -1));
 
         jumlah_field.addActionListener(new java.awt.event.ActionListener() {

@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Brian R
  */
-public class m_gudang2 {
+public class m_gudang2 extends config{
 
     Connection connection;
     Statement statement;
@@ -29,7 +29,7 @@ public class m_gudang2 {
 
     public m_gudang2() {
         try {
-            connection = config.Connection();
+            connection = Connection();
             statement = connection.createStatement();
         } catch (Exception e) {
             System.out.println(e.getMessage());
