@@ -27,7 +27,7 @@ import model.m_gudang2;
  */
 public class gudang2 extends javax.swing.JPanel {
 
-    Connection connection = config.Connection();
+//    Connection connection = config.Connection();
     Statement statement;
     ResultSet resultSet;
     public static int id[];
@@ -256,6 +256,8 @@ public class gudang2 extends javax.swing.JPanel {
 
         jLabel5.setText("Id");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+
+        id_barangtoko.setEditable(false);
         add(id_barangtoko, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 100, -1));
     }// </editor-fold>//GEN-END:initComponents
 

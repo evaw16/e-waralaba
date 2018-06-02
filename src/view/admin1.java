@@ -23,9 +23,6 @@ public class admin1 extends javax.swing.JPanel {
     /**
      * Creates new form admin1
      */
-    Connection connection = config.Connection();
-    Statement statement;
-    ResultSet resultSet;
     
     public admin1() {
         initComponents();
@@ -174,6 +171,7 @@ public class admin1 extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
         add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 170, -1));
 
+        idAdmin1.setEditable(false);
         idAdmin1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idAdmin1ActionPerformed(evt);

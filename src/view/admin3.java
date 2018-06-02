@@ -28,9 +28,9 @@ import org.jfree.data.jdbc.JDBCCategoryDataset;
  */
 public class admin3 extends javax.swing.JPanel {
 
-    Connection connection = config.Connection();
-    Statement statement;
-    ResultSet resultSet;
+//    Connection connection = config.Connection();
+//    Statement statement;
+//    ResultSet resultSet;
     private int id_user;
 
     public admin3() {

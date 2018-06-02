@@ -24,7 +24,7 @@ public class gudang1 extends javax.swing.JPanel {
 
 //    private String namaBarang;
 //    private String kodeBarang, harga, jumlahStok;
-    Connection connection = config.Connection();
+//    Connection connection = config.Connection();
     Statement statement;
     ResultSet resultSet;
 
@@ -242,6 +242,8 @@ public class gudang1 extends javax.swing.JPanel {
             }
         });
         add(nama_barang, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 180, -1));
+
+        kode_barang.setEditable(false);
         add(kode_barang, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 180, -1));
 
         jLabel4.setText("Jumlah Stok");
@@ -289,28 +291,28 @@ public class gudang1 extends javax.swing.JPanel {
     }//GEN-LAST:event_nama_barangActionPerformed
 
     private void cari_barangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cari_barangKeyPressed
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Kode Barang");
-        model.addColumn("Nama Barang");
-        model.addColumn("Jumlah Stok");
-        model.addColumn("Harga");
-        try {
-            String sql = "select * from barang where nama_barang like '%" + cari_barang.getText() + "%'";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-
-            int no = 0;
-            while (resultSet.next()) {
-                no++;
-                model.addRow(new Object[]{
-                    resultSet.getInt("kode_barang"), resultSet.getString("nama_barang"), resultSet.getInt("jumlah_stok"), resultSet.getInt("harga")
-                });
-            }
-            table_barang.setModel(model);
-        } catch (Exception e) {
-            System.out.println("asdkljlasdjlkasdj");
-            System.out.println(e.getMessage());
-        }
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("Kode Barang");
+//        model.addColumn("Nama Barang");
+//        model.addColumn("Jumlah Stok");
+//        model.addColumn("Harga");
+//        try {
+//            String sql = "select * from barang where nama_barang like '%" + cari_barang.getText() + "%'";
+//            statement = connection.createStatement();
+//            resultSet = statement.executeQuery(sql);
+//
+//            int no = 0;
+//            while (resultSet.next()) {
+//                no++;
+//                model.addRow(new Object[]{
+//                    resultSet.getInt("kode_barang"), resultSet.getString("nama_barang"), resultSet.getInt("jumlah_stok"), resultSet.getInt("harga")
+//                });
+//            }
+//            table_barang.setModel(model);
+//        } catch (Exception e) {
+//            System.out.println("asdkljlasdjlkasdj");
+//            System.out.println(e.getMessage());
+//        }
     }//GEN-LAST:event_cari_barangKeyPressed
 
     private void table_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_barangMouseClicked

@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class toko1 extends javax.swing.JPanel {
 
-    Connection connection = config.Connection();
+//    Connection connection = config.Connection();
     Statement statement;
     ResultSet resultSet;
 
@@ -185,6 +185,8 @@ public class toko1 extends javax.swing.JPanel {
 
         tanggal.setDateFormatString("yyyy-MM-dd");
         add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 130, -1));
+
+        id_penjualan.setEditable(false);
         add(id_penjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 130, -1));
 
         jLabel5.setText("Id");

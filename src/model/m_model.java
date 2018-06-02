@@ -9,7 +9,7 @@ package model;
  *
  * @author Brian R
  */
-public abstract class m_model extends connector.config {
+public abstract class m_model {
 
     public m_model() {
         

@@ -13,6 +13,7 @@ import connector.config;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class toko2 extends javax.swing.JPanel {
@@ -20,41 +21,51 @@ public class toko2 extends javax.swing.JPanel {
     /**
      * Creates new form toko2
      */
-    Connection connection = config.Connection();
-    Statement statement;
-    ResultSet resultSet;
+//    Connection connection = config.Connection();
+//    Statement statement;
+//    ResultSet resultSet;
     public int id_toko2;
 
-    public toko2(int id) {
+    public toko2() {
         initComponents();
-        this.id_toko2 = id;
-        tampilBarang(id_toko2);
+//        this.id_toko2 = id;
+//        tampilBarang(id_toko2);
     }
 
-    public void tampilBarang(int id) {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Kode Barang");
-        model.addColumn("Nama Barang");
-        model.addColumn("Jumlah Stok");
-        model.addColumn("Harga");
-        try {
-            String sql = "select * from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang where tb.id =" + id_toko2;
-            System.out.println(id_toko2);
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-
-            int no = 0;
-            while (resultSet.next()) {
-                no++;
-                model.addRow(new Object[]{
-                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah"), resultSet.getString("harga")
-                });
-            }
-            table_barang.setModel(model);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public JTable getTable_barang() {
+        return table_barang;
     }
+//
+    public void setTable_barang(JTable table_barang, DefaultTableModel table) {
+        table_barang.setModel(table);
+    }
+//    
+//    
+//
+//    public void tampilBarang(int id) {
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("Kode Barang");
+//        model.addColumn("Nama Barang");
+//        model.addColumn("Jumlah Stok");
+//        model.addColumn("Harga");
+//        try {
+//            String sql = "select * from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang where tb.id =" + id_toko2;
+//            System.out.println(id_toko2);
+//            statement = connection.createStatement();
+//            resultSet = statement.executeQuery(sql);
+//
+//            int no = 0;
+//            while (resultSet.next()) {
+//                no++;
+//                model.addRow(new Object[]{
+//                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah"), resultSet.getString("harga")
+//                });
+//            }
+//            table_barang.setModel(model);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,28 +109,28 @@ public class toko2 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pencarianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pencarianKeyPressed
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Kode Barang");
-        model.addColumn("Nama Barang");
-        model.addColumn("Jumlah Stok");
-        model.addColumn("Harga");
-        try {
-            String sql = "select * from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang where tb.id ="+id_toko2+" and nama_barang like '%" + pencarian.getText() + "%'";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-            
-            int no = 0;
-            while (resultSet.next()) {
-                no++;
-                model.addRow(new Object[]{
-                    resultSet.getInt("kode_barang"), resultSet.getString("nama_barang"), resultSet.getInt("jumlah_stok"), resultSet.getInt("harga")
-                });
-            }
-            table_barang.setModel(model);
-        } catch (Exception e) {
-            System.out.println("asdkljlasdjlkasdj");
-            System.out.println(e.getMessage());
-        }
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("Kode Barang");
+//        model.addColumn("Nama Barang");
+//        model.addColumn("Jumlah Stok");
+//        model.addColumn("Harga");
+//        try {
+//            String sql = "select * from barang b join tb_barangtokoo tb on b.kode_barang = tb.kode_barang where tb.id ="+id_toko2+" and nama_barang like '%" + pencarian.getText() + "%'";
+//            statement = connection.createStatement();
+//            resultSet = statement.executeQuery(sql);
+//            
+//            int no = 0;
+//            while (resultSet.next()) {
+//                no++;
+//                model.addRow(new Object[]{
+//                    resultSet.getInt("kode_barang"), resultSet.getString("nama_barang"), resultSet.getInt("jumlah_stok"), resultSet.getInt("harga")
+//                });
+//            }
+//            table_barang.setModel(model);
+//        } catch (Exception e) {
+//            System.out.println("asdkljlasdjlkasdj");
+//            System.out.println(e.getMessage());
+//        }
     }//GEN-LAST:event_pencarianKeyPressed
 
 

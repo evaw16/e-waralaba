@@ -9,6 +9,7 @@ import connector.config;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,37 +21,26 @@ public class admin2 extends javax.swing.JPanel {
     /**
      * Creates new form admin2
      */
-    Connection connection = config.Connection();
-    Statement statement;
-    ResultSet resultSet;
+//    Connection connection = config.Connection();
+//    Statement statement;
+//    ResultSet resultSet;
     public admin2() {
         initComponents();
-        tampilBarang();
+//        tampilBarang();
         
     }
-    private void tampilBarang() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Kode Barang");
-        model.addColumn("Nama Barang");
-        model.addColumn("Jumlah Stok");
-        model.addColumn("Harga");
-        try {
-            String sql = "select * from barang";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
 
-            int no = 0;
-            while (resultSet.next()) {
-                no++;
-                model.addRow(new Object[]{
-                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah_stok"), resultSet.getString("harga")
-                });
-            }
-            table_barang.setModel(model);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public JTable getTable_barang() {
+        return table_barang;
     }
+
+    public void setTable_barang(JTable t, DefaultTableModel tabel) {
+        t.setModel(tabel);
+    }
+    
+//    private void tampilBarang() {
+//        
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,27 +83,27 @@ public class admin2 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cari_barangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cari_barangKeyPressed
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Kode Barang");
-        model.addColumn("Nama Barang");
-        model.addColumn("Jumlah Stok");
-        model.addColumn("Harga");
-        try {
-            String sql = "select * from barang where kode_barang like '%" + cari_barang.getText() + "%' or nama_barang like '%" + cari_barang.getText() + "%' or jumlah_stok like '%" + cari_barang.getText() + "%' or harga like '%" + cari_barang.getText() + "%'";
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-
-            int no = 0;
-            while (resultSet.next()) {
-                no++;
-                model.addRow(new Object[]{
-                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah_stok"), resultSet.getString("harga")
-                });
-            }
-            table_barang.setModel(model);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("Kode Barang");
+//        model.addColumn("Nama Barang");
+//        model.addColumn("Jumlah Stok");
+//        model.addColumn("Harga");
+//        try {
+//            String sql = "select * from barang where kode_barang like '%" + cari_barang.getText() + "%' or nama_barang like '%" + cari_barang.getText() + "%' or jumlah_stok like '%" + cari_barang.getText() + "%' or harga like '%" + cari_barang.getText() + "%'";
+//            statement = connection.createStatement();
+//            resultSet = statement.executeQuery(sql);
+//
+//            int no = 0;
+//            while (resultSet.next()) {
+//                no++;
+//                model.addRow(new Object[]{
+//                    resultSet.getString("kode_barang"), resultSet.getString("nama_barang"), resultSet.getString("jumlah_stok"), resultSet.getString("harga")
+//                });
+//            }
+//            table_barang.setModel(model);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
     }//GEN-LAST:event_cari_barangKeyPressed
 
 

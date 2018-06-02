@@ -49,17 +49,17 @@ public class m_toko1 extends config{
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        if (result >= jumlah_penjualan) {
-            int total = result - jumlah_penjualan;
-            try{
-                String sql = "update tb_barangtokoo set (jumlah) = (?) where id= ?";
-                preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setInt(1, total);
-                preparedStatement.setInt(2, id);
-                preparedStatement.executeUpdate();
-            } catch (Exception e){
-                System.out.println(e.getMessage());
-            }
+//        if (result >= jumlah_penjualan) {
+//            int total = result - jumlah_penjualan;
+//            try{
+//                String sql = "update tb_barangtokoo set (jumlah) = (?) where id= ?";
+//                preparedStatement = connection.prepareStatement(sql);
+//                preparedStatement.setInt(1, total);
+//                preparedStatement.setInt(2, id);
+//                preparedStatement.executeUpdate();
+//            } catch (Exception e){
+//                System.out.println(e.getMessage());
+//            }
             try {
                 String sql = "INSERT INTO tb_penjualan (id_penjualan,tanggal_penjualan,jumlah_penjualan) values(?,?,?)";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -70,9 +70,9 @@ public class m_toko1 extends config{
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        } else{
-            JOptionPane.showMessageDialog(null, "Jumlah Stok kosong");
-        }
+//        } else{
+//            JOptionPane.showMessageDialog(null, "Jumlah Stok kosong");
+//        }
     }
 
     public void ubahData(int barang_toko, Date tanggal, int jumlah_penjualan, int id_penjualan) {

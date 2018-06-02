@@ -7,6 +7,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import model.m_gudang1;
 import view.gudang1;
 
@@ -77,12 +78,16 @@ public class c_gudang1 {
             int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText());
             int hargaBarang = Integer.parseInt(gudang.getHarga_barang().getText());
             int kodeBarang = Integer.parseInt(gudang.getKode_barang().getText());
-            try {
-                model.updateData(namaBarang, jumlahStok, hargaBarang, kodeBarang);
-                gudang.setTabel(gudang.getTable_barang(), model.tableGudang1());
-                clear();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            if (namaBarang.equals("")) {
+                JOptionPane.showMessageDialog(null, "Data tidak boleh kosong");
+            } else {
+                try {
+                    model.updateData(namaBarang, jumlahStok, hargaBarang, kodeBarang);
+                    gudang.setTabel(gudang.getTable_barang(), model.tableGudang1());
+                    clear();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
     }
@@ -96,13 +101,19 @@ public class c_gudang1 {
         public void actionPerformed(ActionEvent ae) {
             String namaBarang = gudang.getNama_barang().getText();
             int jumlahStok = Integer.parseInt(gudang.getJumlah_stok().getText());
+            String jumlah = String.valueOf(jumlahStok);
             int hargaBarang = Integer.parseInt(gudang.getHarga_barang().getText());
-            try {
-                model.simpanData(namaBarang, jumlahStok, hargaBarang);
-                gudang.setTabel(gudang.getTable_barang(), model.tableGudang1());
-                clear();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            String harga = String.valueOf(hargaBarang);
+            if (namaBarang.equals("")) {
+                JOptionPane.showMessageDialog(null, "Data tidak boleh kosong");
+            } else {
+                try {
+                    model.simpanData(namaBarang, jumlahStok, hargaBarang);
+                    gudang.setTabel(gudang.getTable_barang(), model.tableGudang1());
+                    clear();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
 
         }

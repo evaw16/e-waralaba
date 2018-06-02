@@ -14,9 +14,9 @@ import java.sql.DriverManager;
  */
 public class config {
 
-    public static Connection connection = null;
+    protected static Connection connection = null;
 
-    public static Connection Connection() {
+    protected static Connection Connection() {
 
         try {
             String username = "postgres";

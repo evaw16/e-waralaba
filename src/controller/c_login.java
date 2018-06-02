@@ -12,11 +12,13 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.m_admin1;
+import model.m_admin2;
 import model.m_admin3;
 import model.m_gudang1;
 import model.m_gudang2;
 import model.m_login;
 import model.m_toko1;
+import model.m_toko2;
 import view.Login;
 import view.admin1;
 import view.admin2;
@@ -83,11 +85,13 @@ public class c_login {
                         case 3:
                             login.dispose();
                             toko1 t1 = new toko1();
-                            toko2 t2 = new toko2(status[0]);
+                            toko2 t2 = new toko2();
                             v_Toko toko = new v_Toko(t1, t2,status[0]);
                             toko.setVisible(true);
                             m_toko1 mt1 = new m_toko1(status[0]);
                             c_toko1 ct1 = new c_toko1(t1, mt1);
+                            m_toko2 mt2 = new m_toko2(status[0]);
+                            c_toko2 ct2 = new c_toko2(mt2, t2);
                             t1.setVisible(true);
                             t2.setVisible(false);
                             toko.setNama(model.getUsername(status[0]));
@@ -117,6 +121,8 @@ public class c_login {
                             c_admin1 ca1 = new c_admin1(ma1, a1);
                             m_admin3 ma3 = new m_admin3();
                             c_admin3 ca3 = new c_admin3(ma3, a3);
+                            m_admin2 ma2 = new m_admin2();
+                            c_admin2 ca2 = new c_admin2(ma2, a2);
                             a1.setVisible(true);
                             a2.setVisible(false);
                             a3.setVisible(false);

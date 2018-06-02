@@ -214,7 +214,6 @@ public class v_Toko extends javax.swing.JFrame {
         resetColor(tokoStok);
         t1.setVisible(false);
         t2.setVisible(true);
-        t2.tampilBarang(id);
     }//GEN-LAST:event_tokoBarangMousePressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
