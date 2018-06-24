@@ -18,9 +18,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class m_admin1 extends config{
 
-    Connection connection;
-    Statement statement;
-    ResultSet resultSet;
+    private Connection connection;
+    private Statement statement;
+    private ResultSet resultSet;
 
     public m_admin1() {
         try {

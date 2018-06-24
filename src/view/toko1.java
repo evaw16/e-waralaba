@@ -7,6 +7,7 @@ package view;
 
 import com.toedter.calendar.JDateChooser;
 import connector.config;
+import controller.c_toko1;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -26,6 +27,7 @@ public class toko1 extends javax.swing.JPanel {
 //    Connection connection = config.Connection();
     Statement statement;
     ResultSet resultSet;
+    c_toko1 toko1;
 
     public toko1() {
         initComponents();

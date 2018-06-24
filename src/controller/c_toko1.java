@@ -55,7 +55,9 @@ public class c_toko1 {
         public void actionPerformed(ActionEvent ae) {
             try {
                 int id_penjualan = Integer.parseInt(view.getId_penjualan().getText());
-                model.hapusData(id_penjualan);
+                String tanggal = view.getTanggal(view.Tanggal()).toString();
+                Date date = Date.valueOf(tanggal);
+                model.hapusData(id_penjualan,date);
                 view.setTabel(view.getTable_penjualan(), model.tableToko1());
                 clear();
             } catch (Exception e) {

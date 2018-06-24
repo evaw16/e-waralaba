@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import javax.swing.table.DefaultTableModel;
+import pojo.p_barang_masuk;
 import view.gudang1;
 
 /**
@@ -36,9 +37,7 @@ public class m_gudang1 extends config{
     }
 
     public void simpanData(String namaBarang, int jumlahStok, int hargaBarang) {
-//        String sql = "INSERT INTO barang values(" + kodeBarang + ",'" + namaBarang + "'," + jumlahStok + "," + hargaBarang + ")";
         try {
-//            String sql = "INSERT INTO barang values(NULL,?,?,?)";
             String sql = "insert into barang (nama_barang,jumlah_stok,harga) values (?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, namaBarang);
@@ -48,19 +47,20 @@ public class m_gudang1 extends config{
         } catch (Exception e) {
             e.getMessage();
         }
-//        statement = connection.createStatement();
-//        statement.executeUpdate(sql);
-
     }
 
     public void updateData(String namaBarang, int jumlahStok, int hargaBarang, int kodeBarang) throws SQLException {
+        p_barang_masuk p = new p_barang_masuk(kodeBarang, jumlahStok, namaBarang, hargaBarang);
+        int id_barang = p.getId();
+        int jumlah_barang = p.getJumlah();
+        int harga = p.getHarga();
+        String nama = p.getNama();
         String sql = "update barang set (nama_barang,jumlah_stok,harga) = (?,?,?) where kode_barang= ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//        preparedStatement.setString(1, kodeBarang);
-        preparedStatement.setString(1, namaBarang);
-        preparedStatement.setInt(2, jumlahStok);
-        preparedStatement.setInt(3, hargaBarang);
-        preparedStatement.setInt(4, kodeBarang);
+        preparedStatement.setString(1, nama);
+        preparedStatement.setInt(2, jumlah_barang);
+        preparedStatement.setInt(3, harga);
+        preparedStatement.setInt(4, id_barang);
         preparedStatement.executeUpdate();
     }
 

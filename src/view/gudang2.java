@@ -115,6 +115,12 @@ public class gudang2 extends javax.swing.JPanel {
         }
     }
 
+    public JButton getBtnPrint() {
+        return btnPrint;
+    }
+    
+    
+
     private void DropToko() {
 //        try {
 //            String sql = "select * from users where status = 3 order by username";
@@ -170,6 +176,7 @@ public class gudang2 extends javax.swing.JPanel {
         btnReset = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         id_barangtoko = new javax.swing.JTextField();
+        btnPrint = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(690, 530));
@@ -232,12 +239,12 @@ public class gudang2 extends javax.swing.JPanel {
         btnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnSimpan.png"))); // NOI18N
         btnSimpan.setBorderPainted(false);
         btnSimpan.setContentAreaFilled(false);
-        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 130, -1));
+        add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 130, -1));
 
         btnUbah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnUbah.png"))); // NOI18N
         btnUbah.setBorderPainted(false);
         btnUbah.setContentAreaFilled(false);
-        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 130, -1));
+        add(btnUbah, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 130, -1));
 
         btnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnHapus.png"))); // NOI18N
         btnHapus.setBorderPainted(false);
@@ -247,18 +254,23 @@ public class gudang2 extends javax.swing.JPanel {
                 btnHapusActionPerformed(evt);
             }
         });
-        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 130, -1));
+        add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 130, -1));
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnReset.png"))); // NOI18N
         btnReset.setBorderPainted(false);
         btnReset.setContentAreaFilled(false);
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 130, -1));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 130, -1));
 
         jLabel5.setText("Id");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
 
         id_barangtoko.setEditable(false);
         add(id_barangtoko, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 100, -1));
+
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnPrint.png"))); // NOI18N
+        btnPrint.setBorderPainted(false);
+        btnPrint.setContentAreaFilled(false);
+        add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -286,6 +298,7 @@ public class gudang2 extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnUbah;

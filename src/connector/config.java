@@ -14,9 +14,9 @@ import java.sql.DriverManager;
  */
 public class config {
 
-    protected static Connection connection = null;
+    protected Connection connection = null;
 
-    protected static Connection Connection() {
+    protected Connection Connection() {
 
         try {
             String username = "postgres";
@@ -33,6 +33,6 @@ public class config {
     }
 
     public static void main(String[] args) {
-        System.out.println(config.Connection());
+//        System.out.println(config.Connection());
     }
 }

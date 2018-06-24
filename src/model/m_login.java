@@ -39,7 +39,7 @@ public class m_login extends config{
     public int[] getAkun(String user, String pass) throws SQLException {
         status = new int[2];
         String sql = "select * from users where username = ? and password = ?";
-        connection = config.Connection();
+        connection = Connection();
         PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
         preparedStatement.setString(1, user);
         preparedStatement.setString(2, pass);
@@ -52,7 +52,7 @@ public class m_login extends config{
 
     public String getUsername(int id) throws SQLException {
         String sql = "select * from users where id = ?";
-        connection = config.Connection();
+        connection = Connection();
         PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
         resultSet = preparedStatement.executeQuery();
@@ -63,7 +63,7 @@ public class m_login extends config{
 
     public int getId(int id) throws SQLException {
         String sql = "select id from users where id = ?";
-        connection = config.Connection();
+        connection = Connection();
         PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
         resultSet = preparedStatement.executeQuery();

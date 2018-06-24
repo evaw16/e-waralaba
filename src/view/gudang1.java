@@ -180,6 +180,10 @@ public class gudang1 extends javax.swing.JPanel {
     public void setNama_barang(String nama_barang) {
         this.nama_barang.setText(nama_barang);
     }
+
+    public JButton getBtnPrint() {
+        return btnPrint;
+    }
     
     
 
@@ -208,6 +212,7 @@ public class gudang1 extends javax.swing.JPanel {
         btnHapus = new javax.swing.JButton();
         cari_barang = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        btnPrint = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(690, 530));
@@ -284,6 +289,11 @@ public class gudang1 extends javax.swing.JPanel {
 
         jLabel5.setText("Pencarian");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, -1, -1));
+
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btnPrint.png"))); // NOI18N
+        btnPrint.setBorderPainted(false);
+        btnPrint.setContentAreaFilled(false);
+        add(btnPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void nama_barangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nama_barangActionPerformed
@@ -326,6 +336,7 @@ public class gudang1 extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnUbah;

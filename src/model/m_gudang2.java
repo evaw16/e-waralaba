@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import pojo.p_barang_keluar;
 
 /**
  *
@@ -38,10 +39,14 @@ public class m_gudang2 extends config{
 
     public void simpanData(int id, int kode_barang, int jumlah) {
         int result = 0;
+        p_barang_keluar p = new p_barang_keluar(id, jumlah, id);
+        int id_user = p.getId_user();
+        int id_barang = p.getId();
+        int jumlah_barang = p.getJumlah();
         try {
             String sql = "select * from barang where kode_barang = ?";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, kode_barang);
+            preparedStatement.setInt(1, id_barang);
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = resultSet.getInt("jumlah_stok");
@@ -49,12 +54,12 @@ public class m_gudang2 extends config{
             System.out.println(e.getMessage());
         }
         if (result >= jumlah) {
-            int total = result - jumlah;
+            int total = result - jumlah_barang;
             try {
                 String sql = "update barang set (jumlah_stok) = (?) where kode_barang= ?";
                 preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setInt(1, total);
-                preparedStatement.setInt(2, kode_barang);
+                preparedStatement.setInt(2, id_barang);
                 preparedStatement.executeUpdate();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -62,9 +67,9 @@ public class m_gudang2 extends config{
             try {
                 String sql = "INSERT INTO tb_barangtokoo (id,kode_barang,jumlah) values(?,?,?)";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setInt(1, id);
-                preparedStatement.setInt(2, kode_barang);
-                preparedStatement.setInt(3, jumlah);
+                preparedStatement.setInt(1, id_user);
+                preparedStatement.setInt(2, id_barang);
+                preparedStatement.setInt(3, jumlah_barang);
                 preparedStatement.executeUpdate();
             } catch (Exception e) {
                 e.getMessage();
@@ -75,12 +80,16 @@ public class m_gudang2 extends config{
     }
 
     public void ubahData(int id, int kode_barang, int jumlah, int id_barangtoko) {
+        p_barang_keluar p = new p_barang_keluar(id, jumlah, id);
+        int id_user = p.getId_user();
+        int id_barang = p.getId();
+        int jumlah_barang = p.getJumlah();
         try {
             String sql = "update tb_barangtokoo set id = ? , kode_barang = ? , jumlah = ? where id_barangtoko = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
-            preparedStatement.setInt(2, kode_barang);
-            preparedStatement.setInt(3, jumlah);
+            preparedStatement.setInt(1, id_user);
+            preparedStatement.setInt(2, id_barang);
+            preparedStatement.setInt(3, jumlah_barang);
             preparedStatement.setInt(4, id_barangtoko);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
@@ -103,11 +112,11 @@ public class m_gudang2 extends config{
     public DefaultTableModel tableGudang1() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id");
-        model.addColumn("Id Toko");
-        model.addColumn("Id Barang");
+        model.addColumn("Nama Toko");
+        model.addColumn("Nama Barang");
         model.addColumn("Jumlah");
         try {
-            String sql = "select * from tb_barangtokoo";
+            String sql = "select tb.id_barangtoko, u.username, b.nama_barang, tb.jumlah from tb_barangtokoo tb join barang b on tb.kode_barang=b.kode_barang join users u on tb.id = u.id";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 
@@ -115,7 +124,7 @@ public class m_gudang2 extends config{
             while (resultSet.next()) {
                 no++;
                 model.addRow(new Object[]{
-                    resultSet.getString("id_barangtoko"), resultSet.getString("id"), resultSet.getString("kode_barang"), resultSet.getString("jumlah")
+                    resultSet.getString("id_barangtoko"), resultSet.getString("username"), resultSet.getString("nama_barang"), resultSet.getString("jumlah")
                 });
             }
 

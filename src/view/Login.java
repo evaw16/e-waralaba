@@ -37,49 +37,6 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         btnLogin.setBackground(new Color(0, 0, 0, 0));
         this.setLocationRelativeTo(null);
-//        btnLogin.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                try {
-//                    user = username.getText();
-//                    pass = password.getText();
-//
-//                    String sql = "select * from users where username='" + user + "' and password='" + pass + "'";
-//
-//                    connection = config.Connection();
-//                    statement = connection.createStatement();
-//                    resultSet = statement.executeQuery(sql);
-//                    if (resultSet.next()) {
-//                        if (null == resultSet.getString("status")) {
-//                            status = resultSet.getInt("status");
-//                        } else {
-//                            switch (resultSet.getInt("status")) {
-//                                case 1:
-//                                    break;
-//                                case 2:
-//                                    dispose();
-//                                    v_Gudang gudang = new v_Gudang();
-//                                    gudang.setVisible(true);
-//                                    break;
-//                                case 3:
-//                                    dispose();
-//                                    v_Toko toko = new v_Toko();
-//                                    toko.setVisible(true);
-//                                    break;
-//                                default:
-//                                    break;
-//                            }
-//                        }
-//
-//                    } else {
-//                        JOptionPane.showMessageDialog(null, "Login Gagal !");
-//                    }
-//                } catch (Exception e) {
-//                    System.out.println(e.getMessage());
-//                }
-//            }
-//        }
-//        );
         showPassword.addActionListener(
                 new ActionListener() {
             @Override
@@ -237,4 +194,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JCheckBox showPassword;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
+
 }

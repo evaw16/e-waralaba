@@ -38,28 +38,29 @@ public class m_toko1 extends config{
     }
 
     public void simpanData(int barang_toko, Date tanggal, int jumlah_penjualan) {
-        int result = 0;
+        int result = 10;
         try {
-            String sql = "select * from tb_barangtokoo where id = ? ";
+            String sql = "select * from tb_barangtokoo where id_barangtoko = ? ";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, barang_toko);
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = resultSet.getInt("jumlah");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-//        if (result >= jumlah_penjualan) {
-//            int total = result - jumlah_penjualan;
-//            try{
-//                String sql = "update tb_barangtokoo set (jumlah) = (?) where id= ?";
-//                preparedStatement = connection.prepareStatement(sql);
-//                preparedStatement.setInt(1, total);
-//                preparedStatement.setInt(2, id);
-//                preparedStatement.executeUpdate();
-//            } catch (Exception e){
-//                System.out.println(e.getMessage());
-//            }
+        if (result >= jumlah_penjualan) {
+            int total = result - jumlah_penjualan;
+            try {
+                String sql = "update tb_barangtokoo set (jumlah) = (?) where id= ? and id_barangtoko = ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1, total);
+                preparedStatement.setInt(2, id);
+                preparedStatement.setInt(3, barang_toko);
+                preparedStatement.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             try {
                 String sql = "INSERT INTO tb_penjualan (id_penjualan,tanggal_penjualan,jumlah_penjualan) values(?,?,?)";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -70,30 +71,32 @@ public class m_toko1 extends config{
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-//        } else{
-//            JOptionPane.showMessageDialog(null, "Jumlah Stok kosong");
-//        }
+        } else{
+            JOptionPane.showMessageDialog(null, "Jumlah Stok kosong");
+        }
     }
 
     public void ubahData(int barang_toko, Date tanggal, int jumlah_penjualan, int id_penjualan) {
         try {
-            String sql = "update tb_penjualan set id_penjualan = ? , tanggal_penjualan = ? , jumlah_penjualan = ? where id_penjualan = ?";
+            String sql = "update tb_penjualan set id_penjualan = ? , tanggal_penjualan = ? , jumlah_penjualan = ? where id_penjualan = ? and tanggal_penjualan = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, barang_toko);
             preparedStatement.setObject(2, tanggal);
             preparedStatement.setInt(3, jumlah_penjualan);
             preparedStatement.setInt(4, id_penjualan);
+            preparedStatement.setObject(5, tanggal);
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void hapusData(int id_penjualan) {
+    public void hapusData(int id_penjualan, Date tanggal) {
         try {
-            String sql = "delete from tb_penjualan where id_penjualan = ?";
+            String sql = "delete from tb_penjualan where id_penjualan = ? and tanggal_penjualan = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id_penjualan);
+            preparedStatement.setObject(2, tanggal);
             preparedStatement.executeUpdate();
             System.out.println(id_penjualan);
         } catch (Exception e) {
@@ -121,11 +124,11 @@ public class m_toko1 extends config{
     public DefaultTableModel tableToko1() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
-        model.addColumn("Kode Barang");
+        model.addColumn("Nama Barang");
         model.addColumn("Tanggal");
         model.addColumn("Jumlah Penjualan");
         try {
-            String sql = "select * from tb_penjualan p join tb_barangtokoo b on p.id_penjualan = b.id_barangtoko where id =" + id;
+            String sql = "select * from tb_penjualan p join tb_barangtokoo b on p.id_penjualan = b.id_barangtoko join barang ba on b.kode_barang = ba.kode_barang where id =" + id;
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 
@@ -133,7 +136,7 @@ public class m_toko1 extends config{
             while (resultSet.next()) {
                 no++;
                 model.addRow(new Object[]{
-                    resultSet.getString("id_penjualan"), resultSet.getString("kode_barang"), resultSet.getString("tanggal_penjualan"), resultSet.getString("jumlah_penjualan")
+                    resultSet.getString("id_penjualan"), resultSet.getString("nama_barang"), resultSet.getString("tanggal_penjualan"), resultSet.getString("jumlah_penjualan")
                 });
             }
 

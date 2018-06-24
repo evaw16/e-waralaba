@@ -10,11 +10,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
 import model.m_gudang2;
 import view.gudang2;
 
@@ -38,6 +40,7 @@ public class c_gudang2 {
         view.getBtnUbah().addActionListener(new ButtonUbah());
         view.getBtnReset().addActionListener(new ButtonReset());
         view.getBtnHapus().addActionListener(new ButtonHapus());
+        view.getBtnPrint().addActionListener(new ButtonPrint());
         view.setTabel(view.getTable_gudang2(), model.tableGudang1());
     }
 
@@ -52,6 +55,24 @@ public class c_gudang2 {
         HashMap<String, Integer> map = model.comboBarang();
         for (String s : map.keySet()) {
             view.setDdBarang(s);
+        }
+    }
+
+    private class ButtonPrint implements ActionListener {
+
+        public ButtonPrint() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            MessageFormat header = new MessageFormat("Rekap Barang Toko");
+
+            MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+            try {
+                view.getTable_gudang2().print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 

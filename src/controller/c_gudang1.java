@@ -7,7 +7,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.MessageFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import model.m_gudang1;
 import view.gudang1;
 
@@ -29,8 +31,27 @@ public class c_gudang1 {
         gudang.getBtnUbah().addActionListener(new ButtonUbah());
         gudang.getBtnHapus().addActionListener(new ButtonHapus());//bisa
         gudang.getBtnReset().addActionListener(new ButtonReset());//bisa
+        gudang.getBtnPrint().addActionListener(new ButtonPrint());
         gudang.setTabel(gudang.getTable_barang(), model.tableGudang1());
 
+    }
+
+    private class ButtonPrint implements ActionListener {
+
+        public ButtonPrint() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            MessageFormat header = new MessageFormat("Rekap Barang Gudang");
+
+            MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+            try {
+                gudang.getTable_barang().print(JTable.PrintMode.FIT_WIDTH, header, footer);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private class ButtonReset implements ActionListener {
