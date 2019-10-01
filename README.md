@@ -1,2 +1,2 @@
-# e-waralaba
-### Pemrograman Berbasis Objek
+# E - Waralaba
+### Projek Pemrograman Berbasis Objek
